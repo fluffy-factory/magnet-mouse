@@ -1,0 +1,28 @@
+{
+  "name": "magnet-mouse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/magnet-mouse.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fluffy-factory/magnet-mouse.git"
+  },
+  "author": "Guillaume Egloff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fluffy-factory/magnet-mouse/issues"
+  },
+  "homepage": "https://github.com/fluffy-factory/magnet-mouse#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-preset-es2015": "^6.24.1",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "latest"
+  }
+}
