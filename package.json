@@ -2,30 +2,29 @@
   "name": "magnet-mouse",
   "version": "1.0.0",
   "description": "",
-  "umd:main": "lib/magnet-mouse.min.js",
-  "umd:name": "magnet-mouse",
-  "module": "lib/magnet-mouse.es.js",
-  "main": "lib/magnet-mouse.js",
+  "author": "Guillaume Egloff",
+  "license": "MIT",
   "directories": {
     "lib": "lib"
+  },
+  "scripts": {
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fluffy-factory/magnet-mouse.git"
   },
-  "scripts": {
-    "build": "node build"
-  },
-  "author": "Guillaume Egloff",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/fluffy-factory/magnet-mouse/issues"
   },
   "homepage": "https://github.com/fluffy-factory/magnet-mouse#readme",
   "devDependencies": {
+    "@babel/core": "^7.4.5",
     "fs": "0.0.1-security",
     "rollup": "^1.16.4",
-    "rollup-plugin-buble": "^0.19.6",
-    "uglify-js": "^3.6.0"
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-multi-entry": "^2.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
   }
 }
