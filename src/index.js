@@ -10,12 +10,13 @@ export default class MagnetMouse {
       },
       activationDistance: 20,
       activeClass: 'magnet-mouse-active',
-      throttle: 50,
+      throttle: 10,
     };
 
     this.config = {...defaults, ...config};
   }
 
+  // Avoid consecutive calls by introducing a delay.
   static throttle(callback, delay) {
     let last;
     let timer;
@@ -36,6 +37,7 @@ export default class MagnetMouse {
     };
   };
 
+  // Return position X and Y of mouse
   static getPositionMouse(e) {
     let mouseX = e.pageX;
     let mouseY = e.pageY;
@@ -46,6 +48,7 @@ export default class MagnetMouse {
     };
   };
 
+  // Return position of each element
   getPositionElement() {
 
     let $this = this;
@@ -71,7 +74,7 @@ export default class MagnetMouse {
     });
 
     console.log(elements);
-
+    
     return elements;
   };
 
@@ -142,17 +145,14 @@ export default class MagnetMouse {
   };
 
   init() {
-
     let posMouse, posElement, $this = this;
 
-    window.addEventListener('resize', MagnetMouse.throttle(() => {
+    this.resizeFunction = MagnetMouse.throttle(() => {
       posElement = $this.getPositionElement();
 
-    }, $this.config.throttle));
+    }, $this.config.throttle);
 
-    posElement = $this.getPositionElement();
-
-    window.addEventListener('mousemove', MagnetMouse.throttle((e) => {
+    this.mouseFunction = MagnetMouse.throttle((e) => {
       posMouse = MagnetMouse.getPositionMouse(e);
 
       if ($this.config.magnet.active) {
@@ -161,7 +161,24 @@ export default class MagnetMouse {
         $this.hoverElement(posElement, posMouse);
       }
 
-    }, $this.config.throttle));
+    }, $this.config.throttle);
 
+    window.addEventListener('resize', this.resizeFunction);
+    posElement = $this.getPositionElement();
+
+    window.addEventListener('mousemove', this.mouseFunction);
+  }
+
+  destroy() {
+    window.removeEventListener('mousemove', this.mouseFunction);
+    window.removeEventListener('resize', this.resizeFunction);
+
+    let elements = document.querySelectorAll(this.config.element);
+    let $this = this;
+
+    elements.forEach(function (element) {
+      element.classList.remove($this.config.activeClass);
+      element.style.transform = '';
+    });
   }
 }
