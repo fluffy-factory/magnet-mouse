@@ -70,6 +70,8 @@ export default class MagnetMouse {
       });
     });
 
+    console.log(elements);
+
     return elements;
   };
 
@@ -85,12 +87,12 @@ export default class MagnetMouse {
 
           case 'top-left':
             x = posMouse.x - (data.xMin + $this.config.activationDistance);
-            y = posMouse.y + (data.yMin + $this.config.activationDistance / 2);
+            y = posMouse.y - (data.yMin + $this.config.activationDistance);
             break;
 
           case 'top-right':
             x = posMouse.x - (data.xMin + data.elem.width + $this.config.activationDistance);
-            y = posMouse.y + (data.yMin + $this.config.activationDistance / 2);
+            y = posMouse.y - (data.yMin + $this.config.activationDistance);
             break;
 
           case 'bottom-left':
@@ -104,18 +106,18 @@ export default class MagnetMouse {
             break;
 
           case 'top-center':
-            x = posMouse.x - (data.xMin + data.elem.width - $this.config.activationDistance / 2);
-            y = posMouse.y + (data.yMin + $this.config.activationDistance / 2);
+            x = posMouse.x - (data.xMin + $this.config.activationDistance + data.elem.width / 2);
+            y = posMouse.y - (data.yMin + $this.config.activationDistance);
             break;
 
           case 'bottom-center':
-            x = posMouse.x - (data.xMin + data.elem.width - $this.config.activationDistance / 2);
+            x = posMouse.x - (data.xMin + $this.config.activationDistance + data.elem.width / 2);
             y = posMouse.y - (data.yMin + data.elem.height + $this.config.activationDistance);
             break;
 
           default:
-            x = posMouse.x - (data.xMin + data.elem.width - $this.config.activationDistance / 2);
-            y = posMouse.y - (data.yMin + data.elem.height - $this.config.activationDistance / 2);
+            x = posMouse.x - (data.xMin + $this.config.activationDistance + data.elem.width / 2);
+            y = posMouse.y - (data.yMin + $this.config.activationDistance + data.elem.height / 2);
         }
 
         data.elem.node.style.transform = 'translate3d(' + x + 'px,' + y + 'px, 0)';
