@@ -3,17 +3,20 @@ export default class MagnetMouse {
   constructor(config) {
 
     let defaults = {
-      element: '.btn',
+      elementMagnet: '.magnet-mouse',
+      elementFollow: '.follow-mouse',
       magnet: {
         active: true,
         position: 'center'
       },
       activationDistance: 20,
       activeClass: 'magnet-mouse-active',
-      throttle: 10,
+      throttle: 10
     };
 
     this.config = {...defaults, ...config};
+    this.elementMagnet = document.querySelectorAll(this.config.elementMagnet);
+    this.elementFollow = document.querySelectorAll(this.config.elementFollow);
   }
 
   // Avoid consecutive calls by introducing a delay.
@@ -52,10 +55,9 @@ export default class MagnetMouse {
   getPositionElement() {
 
     let $this = this;
-    let element = document.querySelectorAll(this.config.element);
     let elements = [];
 
-    element.forEach(function (element) {
+    this.elementMagnet.forEach(function (element) {
       let rect = element.getBoundingClientRect();
       let x = window.pageXOffset || document.documentElement.scrollLeft;
       let y = window.pageYOffset || document.documentElement.scrollTop;
@@ -73,11 +75,10 @@ export default class MagnetMouse {
       });
     });
 
-    console.log(elements);
-    
     return elements;
   };
 
+  // Magnet element to the mouse with the position specified
   magnetElement(posElement, posMouse) {
     let $this = this;
 
@@ -125,13 +126,27 @@ export default class MagnetMouse {
 
         data.elem.node.style.transform = 'translate3d(' + x + 'px,' + y + 'px, 0)';
         data.elem.node.classList.add($this.config.activeClass);
+
+        if ($this.elementFollow.length > 0) {
+          $this.elementFollow.forEach(function (element) {
+            element.classList.add('follow-mouse-active');
+          });
+        }
+
       } else {
         data.elem.node.classList.remove($this.config.activeClass);
         data.elem.node.style.transform = '';
+
+        if ($this.elementFollow.length > 0) {
+          $this.elementFollow.forEach(function (element) {
+            element.classList.remove('follow-mouse-active');
+          });
+        }
       }
     });
   };
 
+  // Add class to each element when the mouse enter in their zone
   hoverElement(posElement, posMouse) {
     let $this = this;
 
@@ -147,11 +162,12 @@ export default class MagnetMouse {
   init() {
     let posMouse, posElement, $this = this;
 
+    // On resize, calculate position of element
     this.resizeFunction = MagnetMouse.throttle(() => {
       posElement = $this.getPositionElement();
-
     }, $this.config.throttle);
 
+    // On mouse move, magnet element to the mouse or just hover function
     this.mouseFunction = MagnetMouse.throttle((e) => {
       posMouse = MagnetMouse.getPositionMouse(e);
 
@@ -161,10 +177,20 @@ export default class MagnetMouse {
         $this.hoverElement(posElement, posMouse);
       }
 
+      if (this.elementFollow.length > 0) {
+        this.elementFollow.forEach(function (element) {
+          element.style.transform = 'translate3d(' + posMouse.x + 'px,' + posMouse.y + 'px, 0)';
+        });
+      }
+
     }, $this.config.throttle);
 
     window.addEventListener('resize', this.resizeFunction);
-    posElement = $this.getPositionElement();
+
+    // Calculate position of element when page load
+    document.addEventListener('DOMContentLoaded', function () {
+      posElement = $this.getPositionElement();
+    });
 
     window.addEventListener('mousemove', this.mouseFunction);
   }
@@ -173,12 +199,15 @@ export default class MagnetMouse {
     window.removeEventListener('mousemove', this.mouseFunction);
     window.removeEventListener('resize', this.resizeFunction);
 
-    let elements = document.querySelectorAll(this.config.element);
     let $this = this;
 
-    elements.forEach(function (element) {
+    this.elementMagnet.forEach(function (element) {
       element.classList.remove($this.config.activeClass);
       element.style.transform = '';
+    });
+
+    this.elementFollow.forEach(function (element) {
+      element.style.opacity = 0;
     });
   }
 }

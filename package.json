@@ -20,7 +20,6 @@
   "homepage": "https://github.com/fluffy-factory/magnet-mouse#readme",
   "devDependencies": {
     "@babel/core": "^7.4.5",
-    "fs": "0.0.1-security",
     "rollup": "^1.16.4",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.1",

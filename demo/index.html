@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Magnet mouse</title>
+        <style type="text/css">
+            body {
+                background-color: #c5c5c5;
+                height: calc(100vh + 300px);
+            }
+            .one {
+                display: inline-block;
+                margin-left: 50%;
+            }
+            .two {
+                display: inline-block;
+                margin-top: 50px;
+                margin-left: 150px;
+            }
+            .block {
+                display: block;
+            }
+            .magnet {
+                cursor: default;
+                padding: 20px;
+                background-color: green;
+                transition: all .3s ease;
+            }
+            .magnet-mouse-active {
+                background-color: red;
+            }
+            .follow-mouse {
+                position: fixed;
+                z-index: 1000;
+                top: 0;
+                left: 0;
+                width: 30px;
+                height: 30px;
+                border-radius: 100%;
+                background-color: violet;
+                transition: all .1s ease-in-out;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="block">
+            <div class="magnet two">Mea Gulpa</div>
+        </div>
+        <div class="block">
+            <div class="magnet one">Lorem Ipsum</div>
+        </div>
+        <div class="follow-mouse"></div>
+        <script src="../lib/magnet-mouse.es.js"></script>
+        <script>
+            let mm = new MagnetMouse({
+              elementMagnet: '.magnet',
+              activeClass: 'magnet-mouse-active',
+              elementFollow: '.follow-mouse',
+              magnet: {
+                active: true,
+                position: 'center'
+              },
+              activationDistance: 10,
+              throttle: 5,
+            });
+
+            mm.init();
+        </script>
+    </body>
+</html>
