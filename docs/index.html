@@ -37,7 +37,7 @@
                 height: 30px;
                 border-radius: 100%;
                 background-color: violet;
-                transition: all .1s ease-in-out;
+                transition: all .1s linear;
             }
         </style>
     </head>
@@ -52,18 +52,24 @@
         <script src="magnet-mouse.es.js"></script>
         <script>
             let mm = new MagnetMouse({
-              elementMagnet: '.magnet',
-              activeClass: 'magnet-mouse-active',
-              elementFollow: '.follow-mouse',
               magnet: {
-                active: true,
+                element: '.magnet',
+                class: 'magnet-mouse-active',
+                distance: 20,
                 position: 'center'
               },
-              activationDistance: 10,
-              throttle: 5,
+              follow: {
+                element: '.follow-mouse'
+              },
+              throttle: 10
             });
 
             mm.init();
+
+            setTimeout(function () {
+              mm.destroy();
+            }, 2000);
+
         </script>
     </body>
 </html>
