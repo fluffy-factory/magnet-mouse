@@ -1,7 +1,4 @@
 import babel from 'rollup-plugin-babel';
-import resolve from 'rollup-plugin-node-resolve';
-import multiEntry from 'rollup-plugin-multi-entry';
-import commonjs from 'rollup-plugin-commonjs';
 
 let outputFolder = 'lib/';
 let outputDocsFolder = 'docs/';
@@ -9,12 +6,6 @@ let inputFolder = 'src/';
 let name = 'MagnetMouse';
 
 let pluginOptions = [
-  multiEntry(),
-  resolve({
-    jsnext: true,
-    browser: true
-  }),
-  commonjs(),
   babel({
     exclude: 'node_modules/**',
   })
