@@ -1,7 +1,7 @@
 import babel from 'rollup-plugin-babel';
 
 let outputFolder = 'lib/';
-let outputDocsFolder = 'docs/';
+let outputDocsFolder = 'docs/assets/js/';
 let inputFolder = 'src/';
 let name = 'MagnetMouse';
 

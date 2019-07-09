@@ -49,11 +49,12 @@
             <div class="magnet one">Lorem Ipsum</div>
         </div>
         <div class="follow-mouse"></div>
-        <script src="magnet-mouse.es.js"></script>
+        <script src="assets/js/magnet-mouse.es.js"></script>
         <script>
             let mm = new MagnetMouse({
               magnet: {
                 element: '.magnet',
+                active: false,
                 class: 'magnet-mouse-active',
                 distance: 20,
                 position: 'center'
@@ -65,10 +66,6 @@
             });
 
             mm.init();
-
-            setTimeout(function () {
-              mm.destroy();
-            }, 2000);
 
         </script>
     </body>
