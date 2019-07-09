@@ -156,6 +156,6 @@ mm.destroy();
 
 <a href="https://fluffy-factory.github.io/magnet-mouse/" target="_blank">See the demo</a>.
 
-## <img src="/documentation/assets/img/magnet-mouse.png" width="150"/>
+## <img src="/docs/assets/img/magnet-mouse.png" width="150"/>
 
 [Website](https://fluffy-factory.github.io/magnet-mouse/) |  [MIT License](LICENSE.md) | © 2019
