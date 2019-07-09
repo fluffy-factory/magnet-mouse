@@ -13,7 +13,7 @@ export default [
     input: inputFolder + 'index.js',
     output: {
       file: outputDocsFolder + 'magnet-mouse.min.js',
-      format: 'iife',
+      format: 'umd',
       name: name
     },
     plugins: [
@@ -28,7 +28,7 @@ export default [
     input: inputFolder + 'index.js',
     output: {
       file: outputFolder + 'magnet-mouse.min.js',
-      format: 'iife',
+      format: 'umd',
       name: name
     },
     plugins: [
