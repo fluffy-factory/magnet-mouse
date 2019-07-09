@@ -10,7 +10,7 @@
 </blockquote>
 
 <p align="center">
-  <a href="#getting-started">Getting started</a>&nbsp;|&nbsp;<a href="#documentation">Documentation</a>&nbsp;|&nbsp;<a href="#demos-and-examples">Demos and examples</a>
+  <a href="#getting-started">Getting started</a>&nbsp;|&nbsp;<a href="#documentation">Documentation</a>&nbsp;|&nbsp;<a href="https://fluffy-factory.github.io/magnet-mouse/" target="_blank">Demos and examples</a>
 </p>
 
 ## Getting started
@@ -99,9 +99,15 @@ position: 'center' /* center by default, top-left, top-right, bottom-left, botto
 When you want use the callback you have access to element properties:
 
 ```javascript
-inCallback: function (data) {
-  console.log(data);
-}
+let mm = new MagnetMouse({
+  magnet: {
+    element: '.magnet'
+  },
+  inCallback: function (data) {
+    console.log(data);
+  }
+});
+
 ```
 
 Result return:
@@ -145,3 +151,7 @@ Destroy instance of Magnet mouse (Remove eventListener and class CSS)
 ```javascript
 mm.destroy();
 ```
+
+## Demos and examples
+
+[See the demo](https://fluffy-factory.github.io/magnet-mouse/).
