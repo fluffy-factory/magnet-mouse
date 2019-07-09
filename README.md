@@ -104,19 +104,19 @@ inCallback: function (data) {
 }
 ```
 
-data return:
+Result return:
 
 ```json5
 {
-elem: {
-  height: 58, /* Height of element (in px) */
-  width: 126.65625, /* Width of element (in px) */
-  node: 'div.magnet.one' /* Node of element */
-},
-xMax: 1106.65625, /* Position right of element  */
-xMin: 940, /* Position left of element */
-yMax: 194, /* Position bottom of element */
-yMin: 96 /* Position top of element */
+  elem: {
+    height: 58, /* Height of element (in px) */
+    width: 126.65625, /* Width of element (in px) */
+    node: 'div.magnet.one' /* Node of element */
+  },
+  xMax: 1106.65625, /* Position right of element  */
+  xMin: 940, /* Position left of element */
+  yMax: 194, /* Position bottom of element */
+  yMin: 96 /* Position top of element */
 }
 ```
 
