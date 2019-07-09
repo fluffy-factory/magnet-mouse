@@ -254,6 +254,7 @@ export default class MagnetMouse {
   init() {
     let posMouse, posElement, $this = this, mobileTablet = MagnetMouse.mobileAndTabletcheck();
 
+    // Check if user is in mobile or tablet
     if (!mobileTablet) {
       // On resize, calculate position of element
       this.resizeFunction = MagnetMouse.throttle(() => {
@@ -270,6 +271,7 @@ export default class MagnetMouse {
           $this.hoverElement(posElement, posMouse);
         }
 
+        // Follow mouse
         if (this.elementFollow.length > 0) {
           this.elementFollow.forEach(function (element) {
             element.style.transform = 'translate3d(' + posMouse.x + 'px,' + posMouse.y + 'px, 0)';
@@ -288,9 +290,10 @@ export default class MagnetMouse {
       window.addEventListener('mousemove', this.mouseFunction);
 
     } else {
-
-      $this.elementFollow.parentNode.removeChild($this.elementFollow);
-
+      // Remove element follow on mobile/tablet
+      $this.elementFollow.forEach(function (element) {
+        element.remove();
+      });
     }
   }
 
