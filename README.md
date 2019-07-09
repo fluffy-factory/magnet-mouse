@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://github.com/fluffy-factory/magnet-mouse"><img width=150 src="/docs/assets/img/magnet-mouse.png"></a>
+  <a href="https://github.com/fluffy-factory/magnet-mouse"><img width="200" src="/docs/assets/img/magnet-mouse.png"></a>
   <br>
   Magnet mouse
 </h1>
