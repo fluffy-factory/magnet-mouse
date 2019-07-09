@@ -1,41 +1,43 @@
+import commonjs from 'rollup-plugin-commonjs';
+import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
+import { terser } from 'rollup-plugin-terser';
 
 let outputFolder = 'lib/';
 let outputDocsFolder = 'docs/assets/js/';
 let inputFolder = 'src/';
 let name = 'MagnetMouse';
 
-let pluginOptions = [
-  babel({
-    exclude: 'node_modules/**',
-  })
-];
-
 export default [
   {
     input: inputFolder + 'index.js',
     output: {
-      file: outputFolder + 'magnet-mouse.es.js',
+      file: outputDocsFolder + 'magnet-mouse.min.js',
       format: 'iife',
-      name: name
-    }
-  },
-  {
-    input: inputFolder + 'index.js',
-    output: {
-      file: outputDocsFolder + 'magnet-mouse.es.js',
-      format: 'iife',
-      name: name
-    }
-  },
-  {
-    input: inputFolder + 'index.js',
-    output: {
-      file: outputFolder + 'magnet-mouse.js',
-      format: 'umd',
       name: name
     },
-    plugins: pluginOptions
+    plugins: [
+      resolve(),
+      babel({
+        exclude: 'node_modules/**'
+      }),
+      terser()
+    ]
+  },
+  {
+    input: inputFolder + 'index.js',
+    output: {
+      file: outputFolder + 'magnet-mouse.min.js',
+      format: 'iife',
+      name: name
+    },
+    plugins: [
+      resolve(),
+      babel({
+        exclude: 'node_modules/**'
+      }),
+      terser()
+    ]
   }
 ];
 

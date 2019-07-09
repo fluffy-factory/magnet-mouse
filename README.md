@@ -21,5 +21,13 @@ or manual [download](https://github.com/fluffy-factory/magnet-mouse/archive/mast
 #### ES6 modules
 
 ```javascript
-import MagnetMouse from 'magnet-mouse/lib/magnet-mouse.es.js';
+import MagnetMouse from 'magnet-mouse/lib/magnet-mouse.js';
+```
+
+#### File include
+
+Link `magnet-mouse.js` in your HTML :
+
+```html
+<script src="magnet-mouse.js"></script>
 ```
