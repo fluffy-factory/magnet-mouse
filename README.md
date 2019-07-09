@@ -74,3 +74,9 @@ mm.init();
   outCallback: null /* Callback when mouse leave in the magnet effect */
 }
 ```
+
+For position you have multiple choices :
+
+```javascript
+position: 'center' /* center by default, top-left, top-right, bottom-left, bottom-right, top-center, bottom-center */
+```
