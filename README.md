@@ -159,4 +159,4 @@ mm.destroy();
 
 ## <img src="/docs/assets/img/magnet-mouse.png" width="30"/>&nbsp;&nbsp;Magnet mouse
 
-[Website](https://fluffy-factory.github.io/magnet-mouse/) |  [MIT License](LICENSE.md) | © 2019
+[Website](https://fluffy-factory.github.io/magnet-mouse/) |  [MIT License](https://github.com/fluffy-factory/magnet-mouse/blob/master/LICENCE.md) | © 2019
