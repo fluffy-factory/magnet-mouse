@@ -286,6 +286,11 @@ export default class MagnetMouse {
       });
 
       window.addEventListener('mousemove', this.mouseFunction);
+
+    } else {
+
+      $this.elementFollow.parentNode.removeChild($this.elementFollow);
+
     }
   }
 
