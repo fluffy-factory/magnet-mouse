@@ -203,6 +203,9 @@ export default class MagnetMouse {
           });
         }
 
+        // Move element accordiing the mouse
+        data.elem.node.style.transform = 'translate3d(' + x + 'px,' + y + 'px, 0)';
+
         // Callback when mouse enter in element else add class
         if ($this.config.inCallback !== null && typeof $this.config.inCallback === 'function') {
 
@@ -210,8 +213,6 @@ export default class MagnetMouse {
 
         } else {
 
-          // Move element accordiing the mouse
-          data.elem.node.style.transform = 'translate3d(' + x + 'px,' + y + 'px, 0)';
           data.elem.node.classList.add($this.config.magnet.class);
 
         }
@@ -223,6 +224,9 @@ export default class MagnetMouse {
           });
         }
 
+        // Places the element in the initial position
+        data.elem.node.style.transform = '';
+
         // Callback when mouse leave in element else remove class
         if ($this.config.outCallback !== null && typeof $this.config.outCallback === 'function') {
 
@@ -230,9 +234,7 @@ export default class MagnetMouse {
 
         } else {
 
-          // Places the element in the initial position
           data.elem.node.classList.remove($this.config.magnet.class);
-          data.elem.node.style.transform = '';
 
         }
       }

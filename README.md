@@ -61,6 +61,12 @@ let mm = new MagnetMouse({
 mm.init();
 ```
 
+You can destroy it everywhere with:
+
+```javascript
+mm.destroy();
+```
+
 ## Documentation
 
 ### Options
@@ -88,4 +94,54 @@ For position you have multiple choices :
 
 ```javascript
 position: 'center' /* center by default, top-left, top-right, bottom-left, bottom-right, top-center, bottom-center */
+```
+
+When you want use the callback you have access to element properties:
+
+```javascript
+inCallback: function (data) {
+  console.log(data);
+}
+```
+
+data return:
+
+```json5
+{
+elem: {
+  height: 58, /* Height of element (in px) */
+  width: 126.65625, /* Width of element (in px) */
+  node: 'div.magnet.one' /* Node of element */
+},
+xMax: 1106.65625, /* Position right of element  */
+xMin: 940, /* Position left of element */
+yMax: 194, /* Position bottom of element */
+yMin: 96 /* Position top of element */
+}
+```
+
+### Methods
+
+#### getPositionElement
+
+Return position of each element (same json above)
+
+```javascript
+mm.getPositionElement();
+```
+
+### init
+
+Init instance of Magnet mouse
+
+```javascript
+mm.init();
+```
+
+### destroy
+
+Destroy instance of Magnet mouse (Remove eventListener and class CSS)
+
+```javascript
+mm.destroy();
 ```

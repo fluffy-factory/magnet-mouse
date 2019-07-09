@@ -54,12 +54,15 @@
             let mm = new MagnetMouse({
               magnet: {
                 element: '.magnet',
-                enabled: true,
+                active: true,
                 class: 'magnet-mouse-active',
                 distance: 20,
                 position: 'center'
               },
-              throttle: 10
+              throttle: 10,
+              inCallback: function (data) {
+                console.log(data);
+              }
             });
 
             mm.init();
