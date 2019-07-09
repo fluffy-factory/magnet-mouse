@@ -292,7 +292,6 @@ export default class MagnetMouse {
 
     } else {
 
-      console.log('mobile');
       // Remove element follow on mobile/tablet
       $this.elementFollow.forEach(function (element) {
         element.remove();
