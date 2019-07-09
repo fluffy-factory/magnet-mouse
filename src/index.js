@@ -275,7 +275,7 @@ export default class MagnetMouse {
         // Follow mouse
         if (this.elementFollow.length > 0) {
           this.elementFollow.forEach(function (element) {
-            element.style.transform = 'translate3d(' + posMouse.x + 'px,' + posMouse.y + 'px, 0)';
+            element.style.transform = 'translate3d(' + (posMouse.x - window.pageXOffset) + 'px,' + (posMouse.y - window.pageYOffset) + 'px, 0)';
           });
         }
 
@@ -291,6 +291,8 @@ export default class MagnetMouse {
       window.addEventListener('mousemove', this.mouseFunction);
 
     } else {
+
+      console.log('mobile');
       // Remove element follow on mobile/tablet
       $this.elementFollow.forEach(function (element) {
         element.remove();
