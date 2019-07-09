@@ -4,6 +4,15 @@
   Magnet mouse
 </h1>
 
+<blockquote align="center">
+  <em>Magnet-mouse.js</em> is a JavaScript animation library which allows elements of the DOM to follow the mouse with many parameters.<br>
+  It works with DOM attributes, JavaScript Objects and CSS properties.
+</blockquote>
+
+<p align="center">
+  <a href="#getting-started">Getting started</a>&nbsp;|&nbsp;<a href="#documentation">Documentation</a>&nbsp;|&nbsp;<a href="#demos-and-examples">Demos and examples</a>
+</p>
+
 ## Getting started
 
 ### Download
