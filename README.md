@@ -18,6 +18,8 @@ or manual [download](https://github.com/fluffy-factory/magnet-mouse/archive/mast
 
 ### Installation
 
+3 possibilities to install the plugin (import, require or by file include).
+
 #### Import
 
 ```javascript
@@ -42,10 +44,33 @@ Link `magnet-mouse.min.js` in your HTML :
 
 ```javascript
 let mm = new MagnetMouse({
-	magnet: {
-		element: '.magnet'
-	}
+  magnet: {
+    element: '.magnet'
+  }
 });
 
 mm.init();
+```
+
+## Documentation
+
+### Options
+
+```json5
+{
+  magnet: {
+    element: '.magnet-mouse', /* Element to magnet */
+    class: 'magnet-mouse-active', /* Add class when magnet effect begin */
+    enabled: true, /* Enabled magnet effect */
+    distance: 20, /* Distance (in px) when magnet effect around element is active */
+    position: 'center' /* Position of mouse on the element when magnet effect is active */
+  }, 
+  follow: {
+    element: '.follow-mouse', /* Element that follows the mouse */
+    class: 'follow-mouse-active' /* Add class to element that follows the mouse when enter in the magnet effect */
+  },
+  throttle: 10, /* Time (in ms) between each eventListener call */
+  inCallback: null, /* Callback when mouse enter in the magnet effect */
+  outCallback: null /* Callback when mouse leave in the magnet effect */
+}
 ```
