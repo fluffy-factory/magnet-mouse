@@ -127,7 +127,7 @@ Result return:
 Return position of each element (same json above)
 
 ```javascript
-mm.getPositionElement();
+mm.getPositionElements();
 ```
 
 ### init
