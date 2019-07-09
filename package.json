@@ -5,6 +5,12 @@
   "module": "src/index.js",
   "description": "Magnet element by mouse in Javascript",
   "author": "Guillaume Egloff",
+  "keywords": [
+    "animation",
+    "javascript",
+    "mouse",
+    "follow"
+  ],
   "license": "MIT",
   "directories": {
     "lib": "lib"
