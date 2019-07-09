@@ -16,18 +16,36 @@ npm install fluffy-factory/magnet-mouse --save
 
 or manual [download](https://github.com/fluffy-factory/magnet-mouse/archive/master.zip).
 
-### Usage
+### Installation
 
-#### ES6 modules
+#### Import
 
 ```javascript
-import MagnetMouse from 'magnet-mouse/lib/magnet-mouse.js';
+import MagnetMouse from 'magnet-mouse';
+```
+
+#### Require
+
+```javascript
+const magnetMouse = require('magnet-mouse');
 ```
 
 #### File include
 
-Link `magnet-mouse.js` in your HTML :
+Link `magnet-mouse.min.js` in your HTML :
 
 ```html
-<script src="magnet-mouse.js"></script>
+<script src="magnet-mouse.min.js"></script>
+```
+
+### Basic usage
+
+```javascript
+let mm = new MagnetMouse({
+	magnet: {
+		element: '.magnet'
+	}
+});
+
+mm.init();
 ```
