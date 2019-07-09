@@ -1,7 +1,9 @@
 {
   "name": "magnet-mouse",
   "version": "1.0.0",
-  "description": "",
+  "main": "lib/magnet-mouse.min.js",
+  "module": "src/index.js",
+  "description": "Magnet element by mouse in Javascript",
   "author": "Guillaume Egloff",
   "license": "MIT",
   "directories": {
@@ -24,7 +26,6 @@
     "@babel/preset-env": "^7.5.2",
     "rollup": "^1.16.7",
     "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-commonjs": "^10.0.1",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.1.1"
   }
