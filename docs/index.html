@@ -1,69 +1,58 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Magnet mouse</title>
-        <style type="text/css">
-            body {
-                background-color: #c5c5c5;
-                height: calc(100vh + 300px);
-            }
-            .one {
-                display: inline-block;
-                margin-left: 50%;
-            }
-            .two {
-                display: inline-block;
-                margin-top: 50px;
-                margin-left: 150px;
-            }
-            .block {
-                display: block;
-            }
-            .magnet {
-                cursor: default;
-                padding: 20px;
-                background-color: green;
-                transition: all .3s ease;
-            }
-            .magnet-mouse-active {
-                background-color: red;
-            }
-            .follow-mouse {
-                position: fixed;
-                z-index: 1000;
-                top: 0;
-                left: 0;
-                width: 30px;
-                height: 30px;
-                border-radius: 100%;
-                background-color: violet;
-                transition: all .1s linear;
-            }
-        </style>
+        <title>Demos and examples - Magnet mouse</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Rajdhani:400&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/reset.css">
+        <link rel="stylesheet" href="assets/css/prism.css">
+        <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
-        <div class="block">
-            <div class="magnet two">Mea Gulpa</div>
-        </div>
-        <div class="block">
-            <div class="magnet one">Lorem Ipsum</div>
-        </div>
-        <div class="follow-mouse"></div>
-        <script src="assets/js/magnet-mouse.min.js"></script>
-        <script>
-            let mm = new MagnetMouse({
-              magnet: {
-                element: '.magnet',
-                active: true,
-                class: 'magnet-mouse-active',
-                distance: 20,
-                position: 'center'
-              },
-              throttle: 10
-            });
+        <section>
+            <div class="wrapper">
+                <div class="box">
+                    <img class="logo" src="assets/img/magnet-mouse.png" alt="Logo magnet mouse">
+                    <div class="txt-c">
+                        <h1>Magnet mouse</h1>
+                        <p><b>Magnet-mouse.js</b> is a JavaScript animation library which allows elements of the DOM to follow the mouse with many parameters.</p>
+                        <p>It works with <b>DOM attributes, JavaScript Objects and CSS properties</b>.</p>
+                        <a class="icon" href="https://github.com/fluffy-factory/magnet-mouse" target="_blank"><img src="assets/img/github.png" alt="Github"></a>
+                    </div>
 
-            mm.init();
+                    <hr>
 
-        </script>
+                    <h2 id="basic-usage"># Basic usage</h2>
+                    <iframe width="100%" height="300" src="basic.html"></iframe>
+                    <pre><code class="language-js">new MagnetMouse({
+  magnet: {
+    element: '.magnet'
+  }
+});</code></pre>
+
+                    <hr>
+
+                    <h2># Follow mouse</h2>
+                    <iframe width="100%" height="300" src="follow-mouse.html"></iframe>
+                    <pre><code class="language-js">new MagnetMouse({
+  magnet: {
+    element: '.magnet'
+  },
+  follow: {
+    element: '.follow'
+  }
+});</code></pre>
+
+                    <hr>
+
+                    <h2># Throttle</h2>
+                    <iframe width="100%" height="300" src="throttle.html"></iframe>
+                    <pre><code class="language-js">throttle: value //value on milliseconds</code></pre>
+
+                </div>
+            </div>
+        </section>
+        <script src="assets/js/prism.js"></script>
     </body>
 </html>

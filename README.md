@@ -6,7 +6,7 @@
 
 <blockquote align="center">
   <em>Magnet-mouse.js</em> is a JavaScript animation library which allows elements of the DOM to follow the mouse with many parameters.<br>
-  It works with DOM attributes, JavaScript Objects and CSS properties.
+  It works with <strong>DOM attributes, JavaScript Objects and CSS properties</strong>.
 </blockquote>
 
 <p align="center">
@@ -61,10 +61,12 @@ let mm = new MagnetMouse({
 mm.init();
 ```
 
-You can destroy it everywhere with:
+For the transition of the element when the cursor passes over it, you must add CSS:
 
-```javascript
-mm.destroy();
+```css
+.magnet {
+  transition: transform .3s ease;
+}
 ```
 
 ## Documentation

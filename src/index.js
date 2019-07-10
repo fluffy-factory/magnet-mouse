@@ -7,7 +7,7 @@ export default class MagnetMouse {
         element: '.magnet-mouse',
         class: 'magnet-mouse-active',
         enabled: true,
-        distance: 20,
+        distance: 30,
         position: 'center'
       },
       follow: {

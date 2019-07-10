@@ -1,0 +1,82 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    line-height: 1.5;
+    font-weight: 400;
+    background-color: #fbfbfb;
+}
+
+hr {
+    border: 0;
+    width: 100%;
+    height: 1px;
+    margin: 30px 0;
+    background-color: #EAEAEA;
+}
+
+section {
+    margin: 100px 0;
+}
+
+iframe {
+    margin-bottom: 10px;
+}
+
+b {
+    font-weight: bold;
+}
+
+.icon {
+    display: inline-block;
+    margin: 20px 0;
+    width: 45px;
+}
+
+.icon:last-child {
+    margin-bottom: 0;
+}
+
+.wrapper {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.box {
+    background-color: white;
+    box-shadow: 0 0 40px 20px rgba(100,100,100,.1);
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 30px;
+}
+
+.logo {
+    display: block;
+    max-width: 180px;
+    width: 100%;
+    margin: 0 auto 25px auto;
+}
+
+.txt-c {
+    text-align: center;
+}
+
+/*** Typography ***/
+h1, h2, h3 {
+    font-family: 'Rajdhani', sans-serif;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+h1:last-child, h2:last-child, h3:last-child {
+    margin-bottom: 0;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 35px;
+}
