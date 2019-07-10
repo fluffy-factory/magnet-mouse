@@ -1,0 +1,46 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Position - Magnet mouse</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/demo.css">
+    <style type="text/css">
+        .select-wrapper {
+            display: block;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="select-wrapper">
+        <select name="position" id="position">
+            <option value="bottom-center">Bottom-center</option>
+            <option value="bottom-left">Bottom-left</option>
+            <option value="bottom-right">Bottom-right</option>
+            <option selected value="center">Center</option>
+            <option value="top-center">Top-center</option>
+            <option value="top-left">Top-left</option>
+            <option value="top-right">Top-right</option>
+        </select>
+    </div>
+    <div class="block">
+        <a href="#" class="magnet">Magnet mouse</a>
+    </div>
+
+    <script src="assets/js/magnet-mouse.min.js"></script>
+    <script>
+      let mm = new MagnetMouse({
+        magnet: {
+          element: '.magnet',
+          position: 'center'
+        }
+      });
+
+      mm.init();
+
+      document.getElementById('position').addEventListener('input', function () {
+        mm.config.magnet.position = this.value;
+      });
+    </script>
+</body>
+</html>

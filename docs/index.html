@@ -25,16 +25,41 @@
 
                     <h2 id="basic-usage"># Basic usage</h2>
                     <iframe width="100%" height="300" src="basic.html"></iframe>
-                    <pre><code class="language-js">new MagnetMouse({
+                    <pre><code class="language-markup">&lt;div class="magnet">&lt;/p></code></pre>
+                    <pre><code class="language-css">.magnet {
+  display: inline-block;
+  padding: 20px;
+  border-radius: 100px;
+  color: white;
+  text-decoration: none;
+  background-color: #0040BF;
+  transition: all .5s ease;
+}
+.magnet-mouse-active {
+  background-color: #000000;
+}</code></pre>
+                    <pre><code class="language-js">let mm = new MagnetMouse({
   magnet: {
     element: '.magnet'
   }
-});</code></pre>
+});
+
+mm.init();</code></pre>
 
                     <hr>
 
                     <h2># Follow mouse</h2>
                     <iframe width="100%" height="300" src="follow-mouse.html"></iframe>
+                    <pre><code class="language-css">.follow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25px;
+  height: 25px;
+  background-color: #f0d647;
+  border-radius: 100%;
+  transition: transform .1s ease;
+}</code></pre>
                     <pre><code class="language-js">new MagnetMouse({
   magnet: {
     element: '.magnet'
@@ -46,10 +71,19 @@
 
                     <hr>
 
-                    <h2># Throttle</h2>
-                    <iframe width="100%" height="300" src="throttle.html"></iframe>
-                    <pre><code class="language-js">throttle: value //value on milliseconds</code></pre>
+                    <h2># Position</h2>
+                    <iframe width="100%" height="300" src="position.html"></iframe>
+                    <pre><code class="language-js">new MagnetMouse({
+  magnet: {
+    element: '.magnet'
+    position: 'center'
+  }
+});</code></pre>
 
+                    <hr>
+
+                    <h2># Callback</h2>
+                    <iframe width="100%" height="300" src="callback.html"></iframe>
                 </div>
             </div>
         </section>

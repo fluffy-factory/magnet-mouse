@@ -26,6 +26,10 @@ b {
     font-weight: bold;
 }
 
+pre ~ pre {
+    margin-top: 10px;
+}
+
 .icon {
     display: inline-block;
     margin: 20px 0;

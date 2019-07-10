@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Follow mouse - Magnet mouse</title>
+    <title>Callback - Magnet mouse</title>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/demo.css">
     <style type="text/css">
@@ -31,6 +31,13 @@
         },
         follow: {
           element: '.follow'
+        },
+        inCallback: function (data) {
+
+          let follow = document.querySelector(mm.config.follow.element);
+
+          follow.style.width = data.elem.width;
+
         }
       });
 
