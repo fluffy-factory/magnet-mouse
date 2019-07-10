@@ -130,6 +130,14 @@ Result return:
 
 ### Methods
 
+### init
+
+Init instance of Magnet mouse
+
+```javascript
+mm.init();
+```
+
 #### getPositionElement
 
 Return position of each element (same json above)
@@ -138,12 +146,12 @@ Return position of each element (same json above)
 mm.getPositionElements();
 ```
 
-### init
+#### getPositionMouse
 
-Init instance of Magnet mouse
+Return position of mouse (posX and posY)
 
 ```javascript
-mm.init();
+mm.getPositionMouse(window.event);
 ```
 
 ### destroy
@@ -156,7 +164,13 @@ mm.destroy();
 
 ## Demos and examples
 
-<a href="https://fluffy-factory.github.io/magnet-mouse/" target="_blank">See the demo</a>.
+* [Basic usage](https://fluffy-factory.github.io/magnet-mouse/#basic-usage)
+* [Follow mouse](https://fluffy-factory.github.io/magnet-mouse/#follow-mouse)
+* [Position](https://fluffy-factory.github.io/magnet-mouse/#position)
+* [Callback](https://fluffy-factory.github.io/magnet-mouse/#callback)
+* [Examples](https://fluffy-factory.github.io/magnet-mouse/#examples)
+* [Menu](https://fluffy-factory.github.io/magnet-mouse/#menu)
+* [Fun follow](https://fluffy-factory.github.io/magnet-mouse/#fun-follow)
 
 ## Mobile and tablet
 

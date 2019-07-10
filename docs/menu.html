@@ -1,0 +1,78 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Menu - Magnet mouse</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/demo.css">
+    <style type="text/css">
+        .nav-item {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            text-decoration: none;
+            color: #0040BF;
+            text-transform: uppercase;
+            padding: 10px 5px;
+            margin: 20px;
+            transition: all .3s ease;
+        }
+        .nav-item:after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            transform: scaleX(0);
+            background-color: #0040BF;
+            transition: all .3s ease;
+        }
+        .nav-item-active:after {
+            transform: scaleX(1);
+        }
+        .follow {
+            position: fixed;
+            z-index: -1;
+            left: -12.5px;
+            top: -12.5px;
+            width: 25px;
+            height: 25px;
+            background-color: #f0d647;
+            border-radius: 100%;
+            transition: all .3s ease;
+            pointer-events: none;
+        }
+        .follow-mouse-active {
+            left: -25px;
+            top: -25px;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a class="nav-item" href="#">Home</a>
+    <a class="nav-item" href="#">Work</a>
+    <a class="nav-item" href="#">About</a>
+    <a class="nav-item" href="#">Contact</a>
+</nav>
+<div class="follow"></div>
+
+<script src="assets/js/magnet-mouse.min.js"></script>
+<script>
+  let mm = new MagnetMouse({
+    magnet: {
+      element: '.nav-item',
+      class: 'nav-item-active',
+      distance: 0
+    },
+    follow: {
+      element: '.follow'
+    }
+  });
+
+  mm.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fun follow - Magnet mouse</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/demo.css">
+    <style type="text/css">
+        .follow {
+            position: fixed;
+            width: 25px;
+            height: 25px;
+            left: -12.5px;
+            top: -12.5px;
+            border-radius: 100%;
+            pointer-events: none;
+        }
+        .one {
+            z-index: 1;
+            background-color: #ff7575;
+            transition: all .2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .two {
+            z-index: 2;
+            background-color: #ffff75;
+            transition: all .25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .three {
+            z-index: 2;
+            background-color: #a0ff75;
+            transition: all .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .four {
+            z-index: 3;
+            background-color: #5075ff;
+            transition: all .35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .five {
+            z-index: 4;
+            background-color: #a075ff;
+            transition: all .40s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+    </style>
+</head>
+<body>
+
+<div class="follow one"></div>
+<div class="follow two"></div>
+<div class="follow three"></div>
+<div class="follow four"></div>
+<div class="follow five"></div>
+
+<script src="assets/js/magnet-mouse.min.js"></script>
+<script>
+  let mm = new MagnetMouse({
+    follow: {
+      element: '.follow'
+    }
+  });
+
+  mm.init();
+</script>
+</body>
+</html>
