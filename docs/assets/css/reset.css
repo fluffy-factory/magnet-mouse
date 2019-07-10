@@ -47,3 +47,7 @@ table {
 img {
     max-width: 100%;
 }
+
+p:not(:last-child) {
+    margin-bottom: 20px;
+}

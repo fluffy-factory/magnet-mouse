@@ -14,7 +14,7 @@ export default class MagnetMouse {
         element: '.follow-mouse',
         class: 'follow-mouse-active'
       },
-      throttle: 10,
+      throttle: 5,
       inCallback: null,
       outCallback: null,
     };

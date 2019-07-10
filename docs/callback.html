@@ -5,15 +5,24 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/demo.css">
     <style type="text/css">
+        .magnet {
+            transition: transform .3s ease;
+        }
         .follow {
             position: absolute;
             left: 0;
             top: 0;
-            width: 25px;
-            height: 25px;
+            width: 50px;
+            height: 50px;
             background-color: #f0d647;
+            border: 2px solid #f0d647;
             border-radius: 100%;
-            transition: transform .1s ease;
+            transition: all .2s ease;
+        }
+        .follow-mouse-active {
+            border-radius: 100px;
+            background-color: transparent;
+            transition: transform .3s ease, width .2s .3s ease, height .2s .3s ease, left .2s .3s ease, top .2s .3s ease, background-color .2s .3s ease, border-radius .2s .3s ease;
         }
     </style>
 </head>
@@ -37,6 +46,23 @@
           let follow = document.querySelector(mm.config.follow.element);
 
           follow.style.width = data.elem.width;
+          follow.style.height = data.elem.height;
+          follow.style.left = - (data.elem.width / 2);
+          follow.style.top = - (data.elem.height / 2);
+
+          follow.classList.add('follow-mouse-active');
+
+        },
+        outCallback: function () {
+
+          let follow = document.querySelector(mm.config.follow.element);
+
+          follow.style.width = '';
+          follow.style.height = '';
+          follow.style.left = '';
+          follow.style.top = '';
+
+          follow.classList.remove('follow-mouse-active');
 
         }
       });

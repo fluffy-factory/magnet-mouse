@@ -32,7 +32,6 @@ pre ~ pre {
 
 .icon {
     display: inline-block;
-    margin: 20px 0;
     width: 45px;
 }
 
@@ -83,4 +82,9 @@ h1 {
 
 h2 {
     font-size: 35px;
+}
+
+p a {
+    color: #0040BF;
+    text-decoration: none;
 }

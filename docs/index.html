@@ -24,6 +24,7 @@
                     <hr>
 
                     <h2 id="basic-usage"># Basic usage</h2>
+                    <p>This is an example with the minimum parameters to be specified in JS.</p>
                     <iframe width="100%" height="300" src="basic.html"></iframe>
                     <pre><code class="language-markup">&lt;div class="magnet">&lt;/p></code></pre>
                     <pre><code class="language-css">.magnet {
@@ -48,7 +49,8 @@ mm.init();</code></pre>
 
                     <hr>
 
-                    <h2># Follow mouse</h2>
+                    <h2 id="follow-mouse"># Follow mouse</h2>
+                    <p>One or more elements that follow the mouse.</p>
                     <iframe width="100%" height="300" src="follow-mouse.html"></iframe>
                     <pre><code class="language-css">.follow {
   position: absolute;
@@ -71,7 +73,8 @@ mm.init();</code></pre>
 
                     <hr>
 
-                    <h2># Position</h2>
+                    <h2 id="position"># Position</h2>
+                    <p>Change the <b>position of the element</b> relative to the mouse. By default it will be centered.</p>
                     <iframe width="100%" height="300" src="position.html"></iframe>
                     <pre><code class="language-js">new MagnetMouse({
   magnet: {
@@ -82,8 +85,21 @@ mm.init();</code></pre>
 
                     <hr>
 
-                    <h2># Callback</h2>
+                    <h2 id="callback"># Callback</h2>
+                    <p>You have access to <b>2 callbacks</b>: One when the <b>mouse enter</b> in the magnet effect and one when the <b>mouse leave</b> in the magnet effect.<br>Inside the callback you have access to certain data (position element and other variables) <a href="https://github.com/fluffy-factory/magnet-mouse#options" target="_blank">See more.</a></p>
                     <iframe width="100%" height="300" src="callback.html"></iframe>
+                    <pre><code class="language-js">new MagnetMouse({
+  inCallback: function (data) {
+    // Make what you want
+  },
+  outCallback: function (data) {
+    // Make what you want
+  }
+});</code></pre>
+
+                    <hr>
+
+                    <h2># Examples</h2>
                 </div>
             </div>
         </section>

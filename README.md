@@ -157,7 +157,10 @@ mm.destroy();
 ## Demos and examples
 
 <a href="https://fluffy-factory.github.io/magnet-mouse/" target="_blank">See the demo</a>.
-<br><br>
+
+## Mobile and tablet
+
+On mobile and tablet, we do not have a mouse so the plugin is automatically disabled on mobile and tablet.
 
 ## <img src="/docs/assets/img/magnet-mouse.png" width="30"/>&nbsp;&nbsp;Magnet mouse
 
