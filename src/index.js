@@ -2,84 +2,37 @@ export default class MagnetMouse {
 
   constructor(config) {
 
-    let defaults = {
-      magnet: {
-        element: '.magnet-mouse',
-        class: 'magnet-mouse-active',
-        enabled: true,
-        distance: 30,
-        position: 'center'
-      },
-      follow: {
-        element: '.follow-mouse',
-        class: 'follow-mouse-active'
-      },
-      throttle: 5,
-      inCallback: null,
-      outCallback: null,
+    const magnet = {
+      element: '.magnet-mouse',
+      class: 'magnet-mouse-active',
+      enabled: true,
+      distance: 30,
+      position: 'center'
     };
 
-    function isMergeableObject(val) {
-      let nonNullObject = val && typeof val === 'object';
+    const follow = {
+      element: '.follow-mouse',
+      class: 'follow-mouse-active'
+    };
 
-      return nonNullObject
-        && Object.prototype.toString.call(val) !== '[object RegExp]'
-        && Object.prototype.toString.call(val) !== '[object Date]'
-    }
+    const defaults = {
+      follow: follow,
+      magnet: magnet,
+      throttle: 5,
+      inCallback: null,
+      outCallback: null
+    };
 
-    function emptyTarget(val) {
-      return Array.isArray(val) ? [] : {}
-    }
-
-    function cloneIfNecessary(value, optionsArgument) {
-      let clone = optionsArgument && optionsArgument.clone === true;
-      return (clone && isMergeableObject(value)) ? deepmerge(emptyTarget(value), value, optionsArgument) : value
-    }
-
-    function defaultArrayMerge(target, source, optionsArgument) {
-      let destination = target.slice();
-      source.forEach(function (e, i) {
-        if (typeof destination[i] === 'undefined') {
-          destination[i] = cloneIfNecessary(e, optionsArgument)
-        } else if (isMergeableObject(e)) {
-          destination[i] = deepmerge(target[i], e, optionsArgument)
-        } else if (target.indexOf(e) === -1) {
-          destination.push(cloneIfNecessary(e, optionsArgument))
-        }
-      });
-      return destination
-    }
-
-    function mergeObject(target, source, optionsArgument) {
-      let destination = {};
-      if (isMergeableObject(target)) {
-        Object.keys(target).forEach(function (key) {
-          destination[key] = cloneIfNecessary(target[key], optionsArgument)
-        })
+    this.config = {
+      ...defaults,
+      ...config,
+      magnet: {
+        ...magnet, ...config.magnet
+      },
+      follow: {
+        ...follow, ...config.follow
       }
-      Object.keys(source).forEach(function (key) {
-        if (!isMergeableObject(source[key]) || !target[key]) {
-          destination[key] = cloneIfNecessary(source[key], optionsArgument)
-        } else {
-          destination[key] = deepmerge(target[key], source[key], optionsArgument)
-        }
-      });
-      return destination
-    }
-
-    function deepmerge(target, source, optionsArgument) {
-      let array = Array.isArray(source);
-      let options = optionsArgument || {arrayMerge: defaultArrayMerge};
-      let arrayMerge = options.arrayMerge || defaultArrayMerge;
-
-      if (array) {
-        return Array.isArray(target) ? arrayMerge(target, source, optionsArgument) : cloneIfNecessary(source, optionsArgument)
-      } else {
-        return mergeObject(target, source, optionsArgument)
-      }
-    }
-
-    this.config = deepmerge(defaults, config);
+    };
 
     this.elementMagnet = document.querySelectorAll(this.config.magnet.element);
     this.elementFollow = document.querySelectorAll(this.config.follow.element);
@@ -155,10 +108,11 @@ export default class MagnetMouse {
   magnetElement(posElement, posMouse) {
     let $this = this;
 
-    posElement.every(function (data) {
+    posElement.forEach(function (data) {
       if (data.xMin < posMouse.x && data.xMax > posMouse.x && data.yMin < posMouse.y && data.yMax > posMouse.y) {
 
-        let x, y;
+        let x;
+        let y;
 
         switch ($this.config.magnet.position) {
 
@@ -202,7 +156,7 @@ export default class MagnetMouse {
             element.classList.add($this.config.follow.class);
           }
         }
-
+        
         // Move element accordiing the mouse
         data.elem.node.style.transform = 'translate3d(' + x + 'px,' + y + 'px, 0)';
 
@@ -216,8 +170,6 @@ export default class MagnetMouse {
           data.elem.node.classList.add($this.config.magnet.class);
 
         }
-
-        return false;
 
       } else {
 
@@ -240,9 +192,6 @@ export default class MagnetMouse {
           data.elem.node.classList.remove($this.config.magnet.class);
 
         }
-
-        return true;
-
       }
     });
   };
@@ -275,6 +224,7 @@ export default class MagnetMouse {
         posMouse = $this.getPositionMouse(e);
 
         if ($this.config.magnet.enabled) {
+          console.log('okok');
           $this.magnetElement(posElement, posMouse);
         } else {
           $this.hoverElement(posElement, posMouse);
