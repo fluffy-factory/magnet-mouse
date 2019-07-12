@@ -80,10 +80,9 @@ export default class MagnetMouse {
   // Return position of each element
   getPositionElements() {
 
-    let $this = this;
     let elements = [];
 
-    this.elementMagnet.forEach(function (element) {
+    this.elementMagnet.forEach(element => {
       let rect = element.getBoundingClientRect();
       let x = window.pageXOffset || document.documentElement.scrollLeft;
       let y = window.pageYOffset || document.documentElement.scrollTop;
@@ -94,10 +93,10 @@ export default class MagnetMouse {
           width: rect.width,
           height: rect.height
         },
-        xMin: rect.left + x - $this.config.magnet.distance,
-        xMax: rect.left + x + rect.width + $this.config.magnet.distance,
-        yMin: rect.top + y - $this.config.magnet.distance,
-        yMax: rect.top + y + rect.height + $this.config.magnet.distance,
+        xMin: rect.left + x - this.config.magnet.distance,
+        xMax: rect.left + x + rect.width + this.config.magnet.distance,
+        yMin: rect.top + y - this.config.magnet.distance,
+        yMax: rect.top + y + rect.height + this.config.magnet.distance,
       });
     });
 
@@ -106,54 +105,53 @@ export default class MagnetMouse {
 
   // Magnet element to the mouse with the position specified
   magnetElement(posElement, posMouse) {
-    let $this = this;
 
-    posElement.forEach(function (data) {
+    posElement.forEach(data => {
       if (data.xMin < posMouse.x && data.xMax > posMouse.x && data.yMin < posMouse.y && data.yMax > posMouse.y) {
 
         let x;
         let y;
 
-        switch ($this.config.magnet.position) {
+        switch (this.config.magnet.position) {
 
           case 'top-left':
-            x = posMouse.x - (data.xMin + $this.config.magnet.distance);
-            y = posMouse.y - (data.yMin + $this.config.magnet.distance);
+            x = posMouse.x - (data.xMin + this.config.magnet.distance);
+            y = posMouse.y - (data.yMin + this.config.magnet.distance);
             break;
 
           case 'top-right':
-            x = posMouse.x - (data.xMin + data.elem.width + $this.config.magnet.distance);
-            y = posMouse.y - (data.yMin + $this.config.magnet.distance);
+            x = posMouse.x - (data.xMin + data.elem.width + this.config.magnet.distance);
+            y = posMouse.y - (data.yMin + this.config.magnet.distance);
             break;
 
           case 'bottom-left':
-            x = posMouse.x - (data.xMin + $this.config.magnet.distance);
-            y = posMouse.y - (data.yMin + data.elem.height + $this.config.magnet.distance);
+            x = posMouse.x - (data.xMin + this.config.magnet.distance);
+            y = posMouse.y - (data.yMin + data.elem.height + this.config.magnet.distance);
             break;
 
           case 'bottom-right':
-            x = posMouse.x - (data.xMin + data.elem.width + $this.config.magnet.distance);
-            y = posMouse.y - (data.yMin + data.elem.height + $this.config.magnet.distance);
+            x = posMouse.x - (data.xMin + data.elem.width + this.config.magnet.distance);
+            y = posMouse.y - (data.yMin + data.elem.height + this.config.magnet.distance);
             break;
 
           case 'top-center':
-            x = posMouse.x - (data.xMin + $this.config.magnet.distance + data.elem.width / 2);
-            y = posMouse.y - (data.yMin + $this.config.magnet.distance);
+            x = posMouse.x - (data.xMin + this.config.magnet.distance + data.elem.width / 2);
+            y = posMouse.y - (data.yMin + this.config.magnet.distance);
             break;
 
           case 'bottom-center':
-            x = posMouse.x - (data.xMin + $this.config.magnet.distance + data.elem.width / 2);
-            y = posMouse.y - (data.yMin + data.elem.height + $this.config.magnet.distance);
+            x = posMouse.x - (data.xMin + this.config.magnet.distance + data.elem.width / 2);
+            y = posMouse.y - (data.yMin + data.elem.height + this.config.magnet.distance);
             break;
 
           default:
-            x = posMouse.x - (data.xMin + $this.config.magnet.distance + data.elem.width / 2);
-            y = posMouse.y - (data.yMin + $this.config.magnet.distance + data.elem.height / 2);
+            x = posMouse.x - (data.xMin + this.config.magnet.distance + data.elem.width / 2);
+            y = posMouse.y - (data.yMin + this.config.magnet.distance + data.elem.height / 2);
         }
 
-        if ($this.elementFollow.length > 0) {
-          for (let element of $this.elementFollow) {
-            element.classList.add($this.config.follow.class);
+        if (this.elementFollow.length > 0) {
+          for (let element of this.elementFollow) {
+            element.classList.add(this.config.follow.class);
           }
         }
         
@@ -161,21 +159,21 @@ export default class MagnetMouse {
         data.elem.node.style.transform = 'translate3d(' + x + 'px,' + y + 'px, 0)';
 
         // Callback when mouse enter in element else add class
-        if ($this.config.inCallback !== null && typeof $this.config.inCallback === 'function') {
+        if (this.config.inCallback !== null && typeof this.config.inCallback === 'function') {
 
-          $this.config.inCallback.call(this, data);
+          this.config.inCallback.call(this, data);
 
         } else {
 
-          data.elem.node.classList.add($this.config.magnet.class);
+          data.elem.node.classList.add(this.config.magnet.class);
 
         }
 
       } else {
 
-        if ($this.elementFollow.length > 0) {
-          for (let element of $this.elementFollow) {
-            element.classList.remove($this.config.follow.class);
+        if (this.elementFollow.length > 0) {
+          for (let element of this.elementFollow) {
+            element.classList.remove(this.config.follow.class);
           }
         }
 
@@ -183,13 +181,13 @@ export default class MagnetMouse {
         data.elem.node.style.transform = '';
 
         // Callback when mouse leave in element else remove class
-        if ($this.config.outCallback !== null && typeof $this.config.outCallback === 'function') {
+        if (this.config.outCallback !== null && typeof this.config.outCallback === 'function') {
 
-          $this.config.outCallback.call(this, data);
+          this.config.outCallback.call(this, data);
 
         } else {
 
-          data.elem.node.classList.remove($this.config.magnet.class);
+          data.elem.node.classList.remove(this.config.magnet.class);
 
         }
       }
@@ -198,52 +196,51 @@ export default class MagnetMouse {
 
   // Add class to each element when the mouse enter in their zone
   hoverElement(posElement, posMouse) {
-    let $this = this;
-
-    posElement.forEach(function (data) {
+    posElement.forEach(data => {
       if (data.xMin < posMouse.x && data.xMax > posMouse.x && data.yMin < posMouse.y && data.yMax > posMouse.y) {
-        data.elem.node.classList.add($this.config.magnet.class);
+        data.elem.node.classList.add(this.config.magnet.class);
       } else {
-        data.elem.node.classList.remove($this.config.magnet.class);
+        data.elem.node.classList.remove(this.config.magnet.class);
       }
     });
   };
 
   init() {
-    let posMouse, posElement, $this = this, mobileTablet = MagnetMouse.mobileAndTabletcheck();
+    let posMouse;
+    let posElement;
+    let mobileTablet = MagnetMouse.mobileAndTabletcheck();
 
     // Check if user is in mobile or tablet
     if (!mobileTablet) {
       // On resize, calculate position of element
       this.resizeFunction = MagnetMouse.throttle(() => {
-        posElement = $this.getPositionElements();
-      }, $this.config.throttle);
+        posElement = this.getPositionElements();
+      }, this.config.throttle);
 
       // On mouse move, magnet element to the mouse or just hover function
       this.mouseFunction = MagnetMouse.throttle((e) => {
-        posMouse = $this.getPositionMouse(e);
+        posMouse = this.getPositionMouse(e);
 
-        if ($this.config.magnet.enabled) {
-          console.log('okok');
-          $this.magnetElement(posElement, posMouse);
+        if (this.config.magnet.enabled) {
+          this.magnetElement(posElement, posMouse);
         } else {
-          $this.hoverElement(posElement, posMouse);
+          this.hoverElement(posElement, posMouse);
         }
 
         // Follow mouse
         if (this.elementFollow.length > 0) {
-          this.elementFollow.forEach(function (element) {
+          this.elementFollow.forEach(element => {
             element.style.transform = 'translate3d(' + (posMouse.x - window.pageXOffset) + 'px,' + (posMouse.y - window.pageYOffset) + 'px, 0)';
           });
         }
 
-      }, $this.config.throttle);
+      }, this.config.throttle);
 
       window.addEventListener('resize', this.resizeFunction);
 
       // Calculate position of element when page load
-      document.addEventListener('DOMContentLoaded', function () {
-        posElement = $this.getPositionElements();
+      document.addEventListener('DOMContentLoaded', () => {
+        posElement = this.getPositionElements();
       });
 
       window.addEventListener('mousemove', this.mouseFunction);
@@ -251,7 +248,7 @@ export default class MagnetMouse {
     } else {
 
       // Remove element follow on mobile/tablet
-      $this.elementFollow.forEach(function (element) {
+      this.elementFollow.forEach(element => {
         element.remove();
       });
     }
@@ -261,14 +258,12 @@ export default class MagnetMouse {
     window.removeEventListener('mousemove', this.mouseFunction);
     window.removeEventListener('resize', this.resizeFunction);
 
-    let $this = this;
-
-    this.elementMagnet.forEach(function (element) {
-      element.classList.remove($this.config.magnet.class);
+    this.elementMagnet.forEach(element => {
+      element.classList.remove(this.config.magnet.class);
       element.style.transform = '';
     });
 
-    this.elementFollow.forEach(function (element) {
+    this.elementFollow.forEach(element => {
       element.style.opacity = 0;
     });
   }
