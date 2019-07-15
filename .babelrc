@@ -6,5 +6,5 @@
       }
     }]
   ],
-  "plugins": ["@babel/plugin-transform-spread"]
+  "plugins": ["@babel/plugin-proposal-object-rest-spread"]
 }

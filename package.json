@@ -29,7 +29,7 @@
   "homepage": "https://github.com/fluffy-factory/magnet-mouse#readme",
   "devDependencies": {
     "@babel/core": "^7.5.0",
-    "@babel/plugin-transform-spread": "^7.2.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.4",
     "@babel/preset-env": "^7.5.2",
     "rollup": "^1.16.7",
     "rollup-plugin-babel": "^4.3.3",
