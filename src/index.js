@@ -84,7 +84,7 @@ export default class MagnetMouse {
 
     let elements = [];
 
-    this.elementMagnet.forEach(element => {
+    for (let element of this.elementMagnet) {
       let rect = element.getBoundingClientRect();
       let x = window.pageXOffset || document.documentElement.scrollLeft;
       let y = window.pageYOffset || document.documentElement.scrollTop;
@@ -100,7 +100,7 @@ export default class MagnetMouse {
         yMin: rect.top + y - this.config.magnet.distance,
         yMax: rect.top + y + rect.height + this.config.magnet.distance,
       });
-    });
+    }
 
     return elements;
   };
@@ -219,7 +219,7 @@ export default class MagnetMouse {
 
   // Add class to each element when the mouse enter in their zone
   hoverElement(posElement, posMouse) {
-    posElement.forEach(data => {
+    for (let data of posElement) {
       let element = data.elem.node;
 
       if (data.xMin < posMouse.x && data.xMax > posMouse.x && data.yMin < posMouse.y && data.yMax > posMouse.y) {
@@ -227,7 +227,7 @@ export default class MagnetMouse {
       } else {
         element.classList.remove(this.config.magnet.class);
       }
-    });
+    }
   };
 
   init() {
@@ -255,9 +255,9 @@ export default class MagnetMouse {
 
         // Follow mouse
         if (this.elementFollow.length > 0) {
-          this.elementFollow.forEach(element => {
+          for (let element of this.elementFollow) {
             element.style.transform = 'translate3d(' + (posMouse.x - window.pageXOffset) + 'px,' + (posMouse.y - window.pageYOffset) + 'px, 0)';
-          });
+          }
         }
 
       }, this.config.throttle);
@@ -274,10 +274,9 @@ export default class MagnetMouse {
     } else {
 
       // Remove element follow on mobile/tablet
-      this.elementFollow.forEach(element => {
+      for (let element of this.elementFollow) {
         element.remove();
-      });
-
+      }
     }
   }
 
@@ -285,13 +284,13 @@ export default class MagnetMouse {
     window.removeEventListener('mousemove', this.mouseFunction);
     window.removeEventListener('resize', this.resizeFunction);
 
-    this.elementMagnet.forEach(element => {
+    for (let element of this.elementMagnet) {
       element.classList.remove(this.config.magnet.class);
       element.style.transform = '';
-    });
+    }
 
-    this.elementFollow.forEach(element => {
+    for (let element of this.elementFollow) {
       element.style.opacity = 0;
-    });
+    }
   }
 }

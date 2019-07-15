@@ -122,25 +122,44 @@
       key: "getElementsPosition",
       // Return position of each element
       value: function getElementsPosition() {
-        var _this = this;
-
         var elements = [];
-        this.elementMagnet.forEach(function (element) {
-          var rect = element.getBoundingClientRect();
-          var x = window.pageXOffset || document.documentElement.scrollLeft;
-          var y = window.pageYOffset || document.documentElement.scrollTop;
-          elements.push({
-            elem: {
-              node: element,
-              width: rect.width,
-              height: rect.height
-            },
-            xMin: rect.left + x - _this.config.magnet.distance,
-            xMax: rect.left + x + rect.width + _this.config.magnet.distance,
-            yMin: rect.top + y - _this.config.magnet.distance,
-            yMax: rect.top + y + rect.height + _this.config.magnet.distance
-          });
-        });
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+          for (var _iterator = this.elementMagnet[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var element = _step.value;
+            var rect = element.getBoundingClientRect();
+            var x = window.pageXOffset || document.documentElement.scrollLeft;
+            var y = window.pageYOffset || document.documentElement.scrollTop;
+            elements.push({
+              elem: {
+                node: element,
+                width: rect.width,
+                height: rect.height
+              },
+              xMin: rect.left + x - this.config.magnet.distance,
+              xMax: rect.left + x + rect.width + this.config.magnet.distance,
+              yMin: rect.top + y - this.config.magnet.distance,
+              yMax: rect.top + y + rect.height + this.config.magnet.distance
+            });
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+              _iterator.return();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
+        }
+
         return elements;
       }
     }, {
@@ -197,45 +216,14 @@
       value: function defaultAction(action, mouseElement, data) {
         if (action === 'onEnter') {
           if (this.elementFollow.length > 0) {
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-              for (var _iterator = this.elementFollow[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var element = _step.value;
-                element.classList.add(this.config.follow.class);
-              }
-            } catch (err) {
-              _didIteratorError = true;
-              _iteratorError = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion && _iterator.return != null) {
-                  _iterator.return();
-                }
-              } finally {
-                if (_didIteratorError) {
-                  throw _iteratorError;
-                }
-              }
-            }
-          } // Move element according the mouse
-
-
-          data.elem.node.style.transform = 'translate3d(' + mouseElement.x + 'px,' + mouseElement.y + 'px, 0)';
-          data.elem.node.classList.add(this.config.magnet.class);
-        } else if (action === 'onLeave') {
-          if (this.elementFollow.length > 0) {
             var _iteratorNormalCompletion2 = true;
             var _didIteratorError2 = false;
             var _iteratorError2 = undefined;
 
             try {
               for (var _iterator2 = this.elementFollow[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                var _element = _step2.value;
-
-                _element.classList.remove(this.config.follow.class);
+                var element = _step2.value;
+                element.classList.add(this.config.follow.class);
               }
             } catch (err) {
               _didIteratorError2 = true;
@@ -251,6 +239,37 @@
                 }
               }
             }
+          } // Move element according the mouse
+
+
+          data.elem.node.style.transform = 'translate3d(' + mouseElement.x + 'px,' + mouseElement.y + 'px, 0)';
+          data.elem.node.classList.add(this.config.magnet.class);
+        } else if (action === 'onLeave') {
+          if (this.elementFollow.length > 0) {
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+              for (var _iterator3 = this.elementFollow[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                var _element = _step3.value;
+
+                _element.classList.remove(this.config.follow.class);
+              }
+            } catch (err) {
+              _didIteratorError3 = true;
+              _iteratorError3 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+                  _iterator3.return();
+                }
+              } finally {
+                if (_didIteratorError3) {
+                  throw _iteratorError3;
+                }
+              }
+            }
           } // Places the element in the initial position
 
 
@@ -262,13 +281,13 @@
     }, {
       key: "magnetElement",
       value: function magnetElement(posElement, posMouse) {
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
+        var _iteratorNormalCompletion4 = true;
+        var _didIteratorError4 = false;
+        var _iteratorError4 = undefined;
 
         try {
-          for (var _iterator3 = posElement[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-            var data = _step3.value;
+          for (var _iterator4 = posElement[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+            var data = _step4.value;
             var mouseElement = this.getPosition(data, posMouse);
 
             if (data.xMin < posMouse.x && data.xMax > posMouse.x && data.yMin < posMouse.y && data.yMax > posMouse.y) {
@@ -288,16 +307,16 @@
             }
           }
         } catch (err) {
-          _didIteratorError3 = true;
-          _iteratorError3 = err;
+          _didIteratorError4 = true;
+          _iteratorError4 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-              _iterator3.return();
+            if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+              _iterator4.return();
             }
           } finally {
-            if (_didIteratorError3) {
-              throw _iteratorError3;
+            if (_didIteratorError4) {
+              throw _iteratorError4;
             }
           }
         }
@@ -306,22 +325,40 @@
       key: "hoverElement",
       // Add class to each element when the mouse enter in their zone
       value: function hoverElement(posElement, posMouse) {
-        var _this2 = this;
+        var _iteratorNormalCompletion5 = true;
+        var _didIteratorError5 = false;
+        var _iteratorError5 = undefined;
 
-        posElement.forEach(function (data) {
-          var element = data.elem.node;
+        try {
+          for (var _iterator5 = posElement[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+            var data = _step5.value;
+            var element = data.elem.node;
 
-          if (data.xMin < posMouse.x && data.xMax > posMouse.x && data.yMin < posMouse.y && data.yMax > posMouse.y) {
-            element.classList.add(_this2.config.magnet.class);
-          } else {
-            element.classList.remove(_this2.config.magnet.class);
+            if (data.xMin < posMouse.x && data.xMax > posMouse.x && data.yMin < posMouse.y && data.yMax > posMouse.y) {
+              element.classList.add(this.config.magnet.class);
+            } else {
+              element.classList.remove(this.config.magnet.class);
+            }
           }
-        });
+        } catch (err) {
+          _didIteratorError5 = true;
+          _iteratorError5 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
+              _iterator5.return();
+            }
+          } finally {
+            if (_didIteratorError5) {
+              throw _iteratorError5;
+            }
+          }
+        }
       }
     }, {
       key: "init",
       value: function init() {
-        var _this3 = this;
+        var _this = this;
 
         var posMouse;
         var posElement;
@@ -330,52 +367,131 @@
         if (!mobileTablet) {
           // On resize, calculate position of element
           this.resizeFunction = MagnetMouse.throttle(function () {
-            posElement = _this3.getElementsPosition();
+            posElement = _this.getElementsPosition();
           }, this.config.throttle); // On mouse move, magnet element to the mouse or just hover function
 
           this.mouseFunction = MagnetMouse.throttle(function (e) {
-            posMouse = _this3.getMousePosition(e);
+            posMouse = _this.getMousePosition(e);
 
-            if (_this3.config.magnet.enabled) {
-              _this3.magnetElement(posElement, posMouse);
+            if (_this.config.magnet.enabled) {
+              _this.magnetElement(posElement, posMouse);
             } else {
-              _this3.hoverElement(posElement, posMouse);
+              _this.hoverElement(posElement, posMouse);
             } // Follow mouse
 
 
-            if (_this3.elementFollow.length > 0) {
-              _this3.elementFollow.forEach(function (element) {
-                element.style.transform = 'translate3d(' + (posMouse.x - window.pageXOffset) + 'px,' + (posMouse.y - window.pageYOffset) + 'px, 0)';
-              });
+            if (_this.elementFollow.length > 0) {
+              var _iteratorNormalCompletion6 = true;
+              var _didIteratorError6 = false;
+              var _iteratorError6 = undefined;
+
+              try {
+                for (var _iterator6 = _this.elementFollow[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                  var element = _step6.value;
+                  element.style.transform = 'translate3d(' + (posMouse.x - window.pageXOffset) + 'px,' + (posMouse.y - window.pageYOffset) + 'px, 0)';
+                }
+              } catch (err) {
+                _didIteratorError6 = true;
+                _iteratorError6 = err;
+              } finally {
+                try {
+                  if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
+                    _iterator6.return();
+                  }
+                } finally {
+                  if (_didIteratorError6) {
+                    throw _iteratorError6;
+                  }
+                }
+              }
             }
           }, this.config.throttle);
           window.addEventListener('resize', this.resizeFunction); // Calculate position of element when page load
 
           document.addEventListener('DOMContentLoaded', function () {
-            posElement = _this3.getElementsPosition();
+            posElement = _this.getElementsPosition();
           });
           window.addEventListener('mousemove', this.mouseFunction);
         } else {
           // Remove element follow on mobile/tablet
-          this.elementFollow.forEach(function (element) {
-            element.remove();
-          });
+          var _iteratorNormalCompletion7 = true;
+          var _didIteratorError7 = false;
+          var _iteratorError7 = undefined;
+
+          try {
+            for (var _iterator7 = this.elementFollow[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+              var element = _step7.value;
+              element.remove();
+            }
+          } catch (err) {
+            _didIteratorError7 = true;
+            _iteratorError7 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion7 && _iterator7.return != null) {
+                _iterator7.return();
+              }
+            } finally {
+              if (_didIteratorError7) {
+                throw _iteratorError7;
+              }
+            }
+          }
         }
       }
     }, {
       key: "destroy",
       value: function destroy() {
-        var _this4 = this;
-
         window.removeEventListener('mousemove', this.mouseFunction);
         window.removeEventListener('resize', this.resizeFunction);
-        this.elementMagnet.forEach(function (element) {
-          element.classList.remove(_this4.config.magnet.class);
-          element.style.transform = '';
-        });
-        this.elementFollow.forEach(function (element) {
-          element.style.opacity = 0;
-        });
+        var _iteratorNormalCompletion8 = true;
+        var _didIteratorError8 = false;
+        var _iteratorError8 = undefined;
+
+        try {
+          for (var _iterator8 = this.elementMagnet[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+            var element = _step8.value;
+            element.classList.remove(this.config.magnet.class);
+            element.style.transform = '';
+          }
+        } catch (err) {
+          _didIteratorError8 = true;
+          _iteratorError8 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion8 && _iterator8.return != null) {
+              _iterator8.return();
+            }
+          } finally {
+            if (_didIteratorError8) {
+              throw _iteratorError8;
+            }
+          }
+        }
+
+        var _iteratorNormalCompletion9 = true;
+        var _didIteratorError9 = false;
+        var _iteratorError9 = undefined;
+
+        try {
+          for (var _iterator9 = this.elementFollow[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+            var _element2 = _step9.value;
+            _element2.style.opacity = 0;
+          }
+        } catch (err) {
+          _didIteratorError9 = true;
+          _iteratorError9 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion9 && _iterator9.return != null) {
+              _iterator9.return();
+            }
+          } finally {
+            if (_didIteratorError9) {
+              throw _iteratorError9;
+            }
+          }
+        }
       }
     }], [{
       key: "throttle",
