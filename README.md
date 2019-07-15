@@ -5,7 +5,7 @@
 </h1>
 
 <blockquote align="center">
-  <em>Magnet-mouse.js</em> is a JavaScript animation library which allows elements of the DOM to follow the mouse with many parameters.<br>
+  <em>Magnet-mouse.js</em> is a JavaScript animation library which allows DOM elements to follow the mouse with many parameters.<br>
   It works with <strong>DOM attributes, JavaScript Objects and CSS properties</strong>.
 </blockquote>
 
@@ -61,7 +61,7 @@ let mm = new MagnetMouse({
 mm.init();
 ```
 
-For the transition of the element when the cursor passes over it, you must add CSS:
+For the transition of the element when the cursor hovers it, you must add CSS:
 
 ```css
 .magnet {
@@ -77,28 +77,28 @@ For the transition of the element when the cursor passes over it, you must add C
 {
   magnet: {
     element: '.magnet-mouse', /* Element to magnet */
-    class: 'magnet-mouse-active', /* Add class when magnet effect begin */
-    enabled: true, /* Enabled magnet effect */
-    distance: 20, /* Distance (in px) when magnet effect around element is active */
-    position: 'center' /* Position of mouse on the element when magnet effect is active */
+    class: 'magnet-mouse-active', /* Adds a class when the magnet effect begins */
+    enabled: true, /* Enables the magnet effect */
+    distance: 20, /* Distance (in px) when the magnet effect around element activates */
+    position: 'center' /* Position of mouse relative to the element when magnet effect is active */
   }, 
   follow: {
     element: '.follow-mouse', /* Element that follows the mouse */
     class: 'follow-mouse-active' /* Add class to element that follows the mouse when enter in the magnet effect */
   },
-  throttle: 10, /* Time (in ms) between each eventListener call */
-  inCallback: null, /* Callback when mouse enter in the magnet effect */
-  outCallback: null /* Callback when mouse leave in the magnet effect */
+  throttle: 10, /* Time (in ms) between each eventListener calls */
+  inCallback: null, /* Callback when mouse enters in the magnet effect */
+  outCallback: null /* Callback when mouse leaves in the magnet effect */
 }
 ```
 
-For position you have multiple choices :
+For position, you have multiple choices :
 
 ```javascript
 position: 'center' /* center by default, top-left, top-right, bottom-left, bottom-right, top-center, bottom-center */
 ```
 
-When you want use the callback you have access to element properties:
+When using callbacks, the target element's properties are accessible:
 
 ```javascript
 let mm = new MagnetMouse({
@@ -112,19 +112,19 @@ let mm = new MagnetMouse({
 
 ```
 
-Result return:
+Result returns:
 
 ```json5
 {
   elem: {
-    height: 58, /* Height of element (in px) */
-    width: 126.65625, /* Width of element (in px) */
-    node: 'div.magnet.one' /* Node of element */
+    height: 58, /* Height of the element (in px) */
+    width: 126.65625, /* Width of the element (in px) */
+    node: 'div.magnet.one' /* Node of the element */
   },
-  xMax: 1106.65625, /* Position right of element  */
-  xMin: 940, /* Position left of element */
-  yMax: 194, /* Position bottom of element */
-  yMin: 96 /* Position top of element */
+  xMax: 1106.65625, /* Right position of the element  */
+  xMin: 940, /* Left position of the element */
+  yMax: 194, /* Bottom position of the element */
+  yMin: 96 /* Top position of the element */
 }
 ```
 
@@ -132,7 +132,7 @@ Result return:
 
 ### init
 
-Init instance of Magnet mouse
+Initializes Magnet mouse
 
 ```javascript
 mm.init();
@@ -140,7 +140,7 @@ mm.init();
 
 #### getPositionElement
 
-Return position of each element (same json above)
+Returns the position of each element (same json above)
 
 ```javascript
 mm.getPositionElements();
@@ -148,7 +148,7 @@ mm.getPositionElements();
 
 #### getPositionMouse
 
-Return position of mouse (posX and posY)
+Returns the mouse's position (posX and posY)
 
 ```javascript
 mm.getPositionMouse(window.event);
@@ -156,7 +156,7 @@ mm.getPositionMouse(window.event);
 
 ### destroy
 
-Destroy instance of Magnet mouse (Remove eventListener and class CSS)
+Destroys a Magnet mouse (Removes eventListener and CSS classes)
 
 ```javascript
 mm.destroy();
@@ -174,7 +174,7 @@ mm.destroy();
 
 ## Mobile and tablet
 
-On mobile and tablet, we do not have a mouse so the plugin is automatically disabled on mobile and tablet.
+On mobile and tablets there is no mouse, so the plugin is automatically disabled on these platforms.
 
 ## <img src="/docs/assets/img/magnet-mouse.png" width="30"/>&nbsp;&nbsp;Magnet mouse
 
