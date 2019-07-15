@@ -143,7 +143,7 @@ mm.init();
 Return position of each element (same json above)
 
 ```javascript
-mm.getPositionElements();
+mm.getElementsPosition();
 ```
 
 #### getPositionMouse
@@ -151,7 +151,7 @@ mm.getPositionElements();
 Return position of mouse (posX and posY)
 
 ```javascript
-mm.getPositionMouse(window.event);
+mm.getMousePosition(window.event);
 ```
 
 ### destroy

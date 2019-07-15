@@ -69,7 +69,7 @@ export default class MagnetMouse {
   };
 
   // Return position X and Y of mouse
-  getPositionMouse(e) {
+  getMousePosition(e) {
     let mouseX = e.pageX;
     let mouseY = e.pageY;
 
@@ -80,7 +80,7 @@ export default class MagnetMouse {
   };
 
   // Return position of each element
-  getPositionElements() {
+  getElementsPosition() {
 
     let elements = [];
 
@@ -240,12 +240,12 @@ export default class MagnetMouse {
 
       // On resize, calculate position of element
       this.resizeFunction = MagnetMouse.throttle(() => {
-        posElement = this.getPositionElements();
+        posElement = this.getElementsPosition();
       }, this.config.throttle);
 
       // On mouse move, magnet element to the mouse or just hover function
       this.mouseFunction = MagnetMouse.throttle((e) => {
-        posMouse = this.getPositionMouse(e);
+        posMouse = this.getMousePosition(e);
 
         if (this.config.magnet.enabled) {
           this.magnetElement(posElement, posMouse);
@@ -266,7 +266,7 @@ export default class MagnetMouse {
 
       // Calculate position of element when page load
       document.addEventListener('DOMContentLoaded', () => {
-        posElement = this.getPositionElements();
+        posElement = this.getElementsPosition();
       });
 
       window.addEventListener('mousemove', this.mouseFunction);
