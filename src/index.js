@@ -255,8 +255,8 @@ export default class MagnetMouse {
 
         // Follow mouse
         if (this.elementFollow.length > 0) {
-          for (let element of this.elementFollow) {
-            element.style.transform = 'translate3d(' + (posMouse.x - window.pageXOffset) + 'px,' + (posMouse.y - window.pageYOffset) + 'px, 0)';
+          for (let i = 0; i < this.elementFollow.length; i++) {
+            this.elementFollow[i].style.transform = 'translate3d(' + (posMouse.x - window.pageXOffset) + 'px,' + (posMouse.y - window.pageYOffset) + 'px, 0)';
           }
         }
 
@@ -274,8 +274,8 @@ export default class MagnetMouse {
     } else {
 
       // Remove element follow on mobile/tablet
-      for (let element of this.elementFollow) {
-        element.remove();
+      for (let i = 0; i < this.elementFollow.length; i++) {
+        this.elementFollow[i].remove();
       }
     }
   }
@@ -284,13 +284,13 @@ export default class MagnetMouse {
     window.removeEventListener('mousemove', this.mouseFunction);
     window.removeEventListener('resize', this.resizeFunction);
 
-    for (let element of this.elementMagnet) {
-      element.classList.remove(this.config.magnet.class);
-      element.style.transform = '';
+    for (let i = 0; i < this.elementMagnet.length; i++) {
+      this.elementMagnet[i].classList.remove(this.config.magnet.class);
+      this.elementMagnet[i].style.transform = '';
     }
 
-    for (let element of this.elementFollow) {
-      element.style.opacity = 0;
+    for (let i = 0; i < this.elementFollow.length; i++) {
+      this.elementFollow[i].style.opacity = 0;
     }
   }
 }
