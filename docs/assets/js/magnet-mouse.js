@@ -1,6 +1,6 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('core-js/modules/es7.symbol.async-iterator'), require('core-js/modules/es6.symbol'), require('core-js/modules/web.dom.iterable')) :
-  typeof define === 'function' && define.amd ? define(['core-js/modules/es7.symbol.async-iterator', 'core-js/modules/es6.symbol', 'core-js/modules/web.dom.iterable'], factory) :
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.MagnetMouse = factory());
 }(this, function () { 'use strict';
 
@@ -123,41 +123,22 @@
       // Return position of each element
       value: function getElementsPosition() {
         var elements = [];
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
 
-        try {
-          for (var _iterator = this.elementMagnet[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var element = _step.value;
-            var rect = element.getBoundingClientRect();
-            var x = window.pageXOffset || document.documentElement.scrollLeft;
-            var y = window.pageYOffset || document.documentElement.scrollTop;
-            elements.push({
-              elem: {
-                node: element,
-                width: rect.width,
-                height: rect.height
-              },
-              xMin: rect.left + x - this.config.magnet.distance,
-              xMax: rect.left + x + rect.width + this.config.magnet.distance,
-              yMin: rect.top + y - this.config.magnet.distance,
-              yMax: rect.top + y + rect.height + this.config.magnet.distance
-            });
-          }
-        } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion && _iterator.return != null) {
-              _iterator.return();
-            }
-          } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
-            }
-          }
+        for (var i = 0; i < this.elementMagnet.length; i++) {
+          var rect = this.elementMagnet[i].getBoundingClientRect();
+          var x = window.pageXOffset || document.documentElement.scrollLeft;
+          var y = window.pageYOffset || document.documentElement.scrollTop;
+          elements.push({
+            elem: {
+              node: this.elementMagnet[i],
+              width: rect.width,
+              height: rect.height
+            },
+            xMin: rect.left + x - this.config.magnet.distance,
+            xMax: rect.left + x + rect.width + this.config.magnet.distance,
+            yMin: rect.top + y - this.config.magnet.distance,
+            yMax: rect.top + y + rect.height + this.config.magnet.distance
+          });
         }
 
         return elements;
@@ -216,28 +197,8 @@
       value: function defaultAction(action, mouseElement, data) {
         if (action === 'onEnter') {
           if (this.elementFollow.length > 0) {
-            var _iteratorNormalCompletion2 = true;
-            var _didIteratorError2 = false;
-            var _iteratorError2 = undefined;
-
-            try {
-              for (var _iterator2 = this.elementFollow[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                var element = _step2.value;
-                element.classList.add(this.config.follow.class);
-              }
-            } catch (err) {
-              _didIteratorError2 = true;
-              _iteratorError2 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                  _iterator2.return();
-                }
-              } finally {
-                if (_didIteratorError2) {
-                  throw _iteratorError2;
-                }
-              }
+            for (var i = 0; i < this.elementFollow.length; i++) {
+              this.elementFollow[i].classList.add(this.config.follow.class);
             }
           } // Move element according the mouse
 
@@ -246,29 +207,8 @@
           data.elem.node.classList.add(this.config.magnet.class);
         } else if (action === 'onLeave') {
           if (this.elementFollow.length > 0) {
-            var _iteratorNormalCompletion3 = true;
-            var _didIteratorError3 = false;
-            var _iteratorError3 = undefined;
-
-            try {
-              for (var _iterator3 = this.elementFollow[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                var _element = _step3.value;
-
-                _element.classList.remove(this.config.follow.class);
-              }
-            } catch (err) {
-              _didIteratorError3 = true;
-              _iteratorError3 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-                  _iterator3.return();
-                }
-              } finally {
-                if (_didIteratorError3) {
-                  throw _iteratorError3;
-                }
-              }
+            for (var _i = 0; _i < this.elementFollow.length; _i++) {
+              this.elementFollow[_i].classList.remove(this.config.follow.class);
             }
           } // Places the element in the initial position
 
@@ -281,42 +221,22 @@
     }, {
       key: "magnetElement",
       value: function magnetElement(posElement, posMouse) {
-        var _iteratorNormalCompletion4 = true;
-        var _didIteratorError4 = false;
-        var _iteratorError4 = undefined;
+        for (var i = 0; i < posElement.length; i++) {
+          var mouseElement = this.getPosition(posElement[i], posMouse);
 
-        try {
-          for (var _iterator4 = posElement[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-            var data = _step4.value;
-            var mouseElement = this.getPosition(data, posMouse);
+          if (posElement[i].xMin < posMouse.x && posElement[i].xMax > posMouse.x && posElement[i].yMin < posMouse.y && posElement[i].yMax > posMouse.y) {
+            this.defaultAction('onEnter', mouseElement, posElement[i]); // Callback when mouse enter in element else add class
 
-            if (data.xMin < posMouse.x && data.xMax > posMouse.x && data.yMin < posMouse.y && data.yMax > posMouse.y) {
-              this.defaultAction('onEnter', mouseElement, data); // Callback when mouse enter in element else add class
-
-              if (this.config.inCallback !== null && typeof this.config.inCallback === 'function') {
-                this.config.inCallback.call(this, data);
-              }
-
-              break;
-            } else {
-              this.defaultAction('onLeave', mouseElement, data); // Callback when mouse leave in element else remove class
-
-              if (this.config.outCallback !== null && typeof this.config.outCallback === 'function') {
-                this.config.outCallback.call(this, data);
-              }
+            if (this.config.inCallback !== null && typeof this.config.inCallback === 'function') {
+              this.config.inCallback.call(this, posElement[i]);
             }
-          }
-        } catch (err) {
-          _didIteratorError4 = true;
-          _iteratorError4 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-              _iterator4.return();
-            }
-          } finally {
-            if (_didIteratorError4) {
-              throw _iteratorError4;
+
+            break;
+          } else {
+            this.defaultAction('onLeave', mouseElement, posElement[i]); // Callback when mouse leave in element else remove class
+
+            if (this.config.outCallback !== null && typeof this.config.outCallback === 'function') {
+              this.config.outCallback.call(this, posElement[i]);
             }
           }
         }
@@ -325,33 +245,13 @@
       key: "hoverElement",
       // Add class to each element when the mouse enter in their zone
       value: function hoverElement(posElement, posMouse) {
-        var _iteratorNormalCompletion5 = true;
-        var _didIteratorError5 = false;
-        var _iteratorError5 = undefined;
+        for (var i = 0; i < posElement.length; i++) {
+          var element = posElement[i].elem.node;
 
-        try {
-          for (var _iterator5 = posElement[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-            var data = _step5.value;
-            var element = data.elem.node;
-
-            if (data.xMin < posMouse.x && data.xMax > posMouse.x && data.yMin < posMouse.y && data.yMax > posMouse.y) {
-              element.classList.add(this.config.magnet.class);
-            } else {
-              element.classList.remove(this.config.magnet.class);
-            }
-          }
-        } catch (err) {
-          _didIteratorError5 = true;
-          _iteratorError5 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
-              _iterator5.return();
-            }
-          } finally {
-            if (_didIteratorError5) {
-              throw _iteratorError5;
-            }
+          if (posElement[i].xMin < posMouse.x && posElement[i].xMax > posMouse.x && posElement[i].yMin < posMouse.y && posElement[i].yMax > posMouse.y) {
+            element.classList.add(this.config.magnet.class);
+          } else {
+            element.classList.remove(this.config.magnet.class);
           }
         }
       }
@@ -381,26 +281,26 @@
 
 
             if (_this.elementFollow.length > 0) {
-              var _iteratorNormalCompletion6 = true;
-              var _didIteratorError6 = false;
-              var _iteratorError6 = undefined;
+              var _iteratorNormalCompletion = true;
+              var _didIteratorError = false;
+              var _iteratorError = undefined;
 
               try {
-                for (var _iterator6 = _this.elementFollow[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-                  var element = _step6.value;
+                for (var _iterator = _this.elementFollow[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                  var element = _step.value;
                   element.style.transform = 'translate3d(' + (posMouse.x - window.pageXOffset) + 'px,' + (posMouse.y - window.pageYOffset) + 'px, 0)';
                 }
               } catch (err) {
-                _didIteratorError6 = true;
-                _iteratorError6 = err;
+                _didIteratorError = true;
+                _iteratorError = err;
               } finally {
                 try {
-                  if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
-                    _iterator6.return();
+                  if (!_iteratorNormalCompletion && _iterator.return != null) {
+                    _iterator.return();
                   }
                 } finally {
-                  if (_didIteratorError6) {
-                    throw _iteratorError6;
+                  if (_didIteratorError) {
+                    throw _iteratorError;
                   }
                 }
               }
@@ -414,26 +314,26 @@
           window.addEventListener('mousemove', this.mouseFunction);
         } else {
           // Remove element follow on mobile/tablet
-          var _iteratorNormalCompletion7 = true;
-          var _didIteratorError7 = false;
-          var _iteratorError7 = undefined;
+          var _iteratorNormalCompletion2 = true;
+          var _didIteratorError2 = false;
+          var _iteratorError2 = undefined;
 
           try {
-            for (var _iterator7 = this.elementFollow[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-              var element = _step7.value;
+            for (var _iterator2 = this.elementFollow[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+              var element = _step2.value;
               element.remove();
             }
           } catch (err) {
-            _didIteratorError7 = true;
-            _iteratorError7 = err;
+            _didIteratorError2 = true;
+            _iteratorError2 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion7 && _iterator7.return != null) {
-                _iterator7.return();
+              if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                _iterator2.return();
               }
             } finally {
-              if (_didIteratorError7) {
-                throw _iteratorError7;
+              if (_didIteratorError2) {
+                throw _iteratorError2;
               }
             }
           }
@@ -444,51 +344,51 @@
       value: function destroy() {
         window.removeEventListener('mousemove', this.mouseFunction);
         window.removeEventListener('resize', this.resizeFunction);
-        var _iteratorNormalCompletion8 = true;
-        var _didIteratorError8 = false;
-        var _iteratorError8 = undefined;
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
 
         try {
-          for (var _iterator8 = this.elementMagnet[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-            var element = _step8.value;
+          for (var _iterator3 = this.elementMagnet[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var element = _step3.value;
             element.classList.remove(this.config.magnet.class);
             element.style.transform = '';
           }
         } catch (err) {
-          _didIteratorError8 = true;
-          _iteratorError8 = err;
+          _didIteratorError3 = true;
+          _iteratorError3 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion8 && _iterator8.return != null) {
-              _iterator8.return();
+            if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+              _iterator3.return();
             }
           } finally {
-            if (_didIteratorError8) {
-              throw _iteratorError8;
+            if (_didIteratorError3) {
+              throw _iteratorError3;
             }
           }
         }
 
-        var _iteratorNormalCompletion9 = true;
-        var _didIteratorError9 = false;
-        var _iteratorError9 = undefined;
+        var _iteratorNormalCompletion4 = true;
+        var _didIteratorError4 = false;
+        var _iteratorError4 = undefined;
 
         try {
-          for (var _iterator9 = this.elementFollow[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-            var _element2 = _step9.value;
-            _element2.style.opacity = 0;
+          for (var _iterator4 = this.elementFollow[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+            var _element = _step4.value;
+            _element.style.opacity = 0;
           }
         } catch (err) {
-          _didIteratorError9 = true;
-          _iteratorError9 = err;
+          _didIteratorError4 = true;
+          _iteratorError4 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion9 && _iterator9.return != null) {
-              _iterator9.return();
+            if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+              _iterator4.return();
             }
           } finally {
-            if (_didIteratorError9) {
-              throw _iteratorError9;
+            if (_didIteratorError4) {
+              throw _iteratorError4;
             }
           }
         }

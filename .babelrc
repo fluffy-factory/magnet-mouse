@@ -1,7 +1,6 @@
 {
   "presets": [
     ["@babel/preset-env", {
-      "useBuiltIns": "usage",
       "targets": {
         "browsers": ["> 0.5%", "IE 11"]
       }

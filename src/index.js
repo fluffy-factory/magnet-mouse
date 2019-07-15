@@ -84,14 +84,14 @@ export default class MagnetMouse {
 
     let elements = [];
 
-    for (let element of this.elementMagnet) {
-      let rect = element.getBoundingClientRect();
+    for (let i = 0; i < this.elementMagnet.length; i++) {
+      let rect = this.elementMagnet[i].getBoundingClientRect();
       let x = window.pageXOffset || document.documentElement.scrollLeft;
       let y = window.pageYOffset || document.documentElement.scrollTop;
 
       elements.push({
         elem: {
-          node: element,
+          node: this.elementMagnet[i],
           width: rect.width,
           height: rect.height
         },
@@ -161,8 +161,8 @@ export default class MagnetMouse {
     if (action === 'onEnter') {
 
       if (this.elementFollow.length > 0) {
-        for (let element of this.elementFollow) {
-          element.classList.add(this.config.follow.class);
+        for (let i = 0; i < this.elementFollow.length; i++) {
+          this.elementFollow[i].classList.add(this.config.follow.class);
         }
       }
 
@@ -173,8 +173,8 @@ export default class MagnetMouse {
     } else if (action === 'onLeave') {
 
       if (this.elementFollow.length > 0) {
-        for (let element of this.elementFollow) {
-          element.classList.remove(this.config.follow.class);
+        for (let i = 0; i < this.elementFollow.length; i++) {
+          this.elementFollow[i].classList.remove(this.config.follow.class);
         }
       }
 
@@ -189,27 +189,27 @@ export default class MagnetMouse {
   // Magnet element to the mouse with the position specified
   magnetElement(posElement, posMouse) {
 
-    for (let data of posElement) {
-      let mouseElement = this.getPosition(data, posMouse);
+    for (let i = 0; i < posElement.length; i++) {
+      let mouseElement = this.getPosition(posElement[i], posMouse);
 
-      if (data.xMin < posMouse.x && data.xMax > posMouse.x && data.yMin < posMouse.y && data.yMax > posMouse.y) {
+      if (posElement[i].xMin < posMouse.x && posElement[i].xMax > posMouse.x && posElement[i].yMin < posMouse.y && posElement[i].yMax > posMouse.y) {
 
-        this.defaultAction('onEnter', mouseElement, data);
+        this.defaultAction('onEnter', mouseElement, posElement[i]);
 
         // Callback when mouse enter in element else add class
         if (this.config.inCallback !== null && typeof this.config.inCallback === 'function') {
-          this.config.inCallback.call(this, data);
+          this.config.inCallback.call(this, posElement[i]);
         }
 
         break;
 
       } else {
 
-        this.defaultAction('onLeave', mouseElement, data);
+        this.defaultAction('onLeave', mouseElement, posElement[i]);
 
         // Callback when mouse leave in element else remove class
         if (this.config.outCallback !== null && typeof this.config.outCallback === 'function') {
-          this.config.outCallback.call(this, data);
+          this.config.outCallback.call(this, posElement[i]);
         }
 
       }
@@ -219,10 +219,10 @@ export default class MagnetMouse {
 
   // Add class to each element when the mouse enter in their zone
   hoverElement(posElement, posMouse) {
-    for (let data of posElement) {
-      let element = data.elem.node;
+    for (let i = 0; i < posElement.length; i++) {
+      let element = posElement[i].elem.node;
 
-      if (data.xMin < posMouse.x && data.xMax > posMouse.x && data.yMin < posMouse.y && data.yMax > posMouse.y) {
+      if (posElement[i].xMin < posMouse.x && posElement[i].xMax > posMouse.x && posElement[i].yMin < posMouse.y && posElement[i].yMax > posMouse.y) {
         element.classList.add(this.config.magnet.class);
       } else {
         element.classList.remove(this.config.magnet.class);
