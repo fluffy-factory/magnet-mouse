@@ -189,7 +189,7 @@ export default class MagnetMouse {
   // Magnet element to the mouse with the position specified
   magnetElement(posElement, posMouse) {
 
-    posElement.forEach(data => {
+    for (let data of posElement) {
       let mouseElement = this.getPosition(data, posMouse);
 
       if (data.xMin < posMouse.x && data.xMax > posMouse.x && data.yMin < posMouse.y && data.yMax > posMouse.y) {
@@ -201,6 +201,8 @@ export default class MagnetMouse {
           this.config.inCallback.call(this, data);
         }
 
+        break;
+
       } else {
 
         this.defaultAction('onLeave', mouseElement, data);
@@ -211,7 +213,8 @@ export default class MagnetMouse {
         }
 
       }
-    });
+
+    }
   };
 
   // Add class to each element when the mouse enter in their zone

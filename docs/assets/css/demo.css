@@ -17,7 +17,9 @@ body {
     color: white;
     text-decoration: none;
     background-color: #0040BF;
-    transition: all .5s ease;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition: all .3s ease;
 }
 .magnet-mouse-active {
     background-color: #000000;

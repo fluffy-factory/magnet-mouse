@@ -45,10 +45,10 @@
 
           let follow = document.querySelector(mm.config.follow.element);
 
-          follow.style.width = data.elem.width;
-          follow.style.height = data.elem.height;
-          follow.style.left = - (data.elem.width / 2);
-          follow.style.top = - (data.elem.height / 2);
+          follow.style.width = data.elem.width + 4;
+          follow.style.height = data.elem.height + 4;
+          follow.style.left = - (data.elem.width / 2) - 2;
+          follow.style.top = - (data.elem.height / 2) - 2;
 
           follow.classList.add('follow-mouse-active');
 
