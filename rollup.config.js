@@ -37,6 +37,34 @@ export default [
       }),
       terser()
     ]
+  },
+  {
+    input: inputFolder + 'index.js',
+    output: {
+      file: outputDocsFolder + 'magnet-mouse.js',
+      format: 'umd',
+      name: name
+    },
+    plugins: [
+      resolve(),
+      babel({
+        exclude: 'node_modules/**'
+      })
+    ]
+  },
+  {
+    input: inputFolder + 'index.js',
+    output: {
+      file: outputFolder + 'magnet-mouse.js',
+      format: 'umd',
+      name: name
+    },
+    plugins: [
+      resolve(),
+      babel({
+        exclude: 'node_modules/**'
+      })
+    ]
   }
 ];
 
