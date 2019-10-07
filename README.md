@@ -27,7 +27,10 @@ or manual [download](https://github.com/fluffy-factory/magnet-mouse/archive/mast
 
 ### Installation
 
-3 possibilities to install the plugin (import, require or by file include).
+3 possibilities to install the plugin :
+* import
+* require
+* or by file include
 
 #### Import
 
