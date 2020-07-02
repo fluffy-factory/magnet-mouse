@@ -23,6 +23,12 @@ Via npm
 npm install fluffy-factory/magnet-mouse --save
 ```
 
+Via CDN
+
+```js
+<script src="https://cdn.jsdelivr.net/gh/fluffy-factory/magnet-mouse@latest/lib/magnet-mouse.min.js"></script>
+```
+
 or manual [download](https://github.com/fluffy-factory/magnet-mouse/archive/master.zip).
 
 ### Installation
