@@ -20,7 +20,8 @@ export default class MagnetMouse {
       magnet: magnet,
       throttle: 5,
       inCallback: null,
-      outCallback: null
+      outCallback: null,
+      dependScroll: false
     };
 
     this.config = {
@@ -256,7 +257,11 @@ export default class MagnetMouse {
         // Follow mouse
         if (this.elementFollow.length > 0) {
           for (let i = 0; i < this.elementFollow.length; i++) {
-            this.elementFollow[i].style.transform = 'translate3d(' + (posMouse.x - window.pageXOffset) + 'px,' + (posMouse.y - window.pageYOffset) + 'px, 0)';
+            if (this.config.dependScroll) {
+              this.elementFollow[i].style.transform = 'translate3d(' + (posMouse.x) + 'px,' + (posMouse.y) + 'px, 0)';
+            } else {
+              this.elementFollow[i].style.transform = 'translate3d(' + (posMouse.x - window.pageXOffset) + 'px,' + (posMouse.y - window.pageYOffset) + 'px, 0)';
+            }
           }
         }
 

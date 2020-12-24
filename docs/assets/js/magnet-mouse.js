@@ -96,7 +96,8 @@
         magnet: magnet,
         throttle: 5,
         inCallback: null,
-        outCallback: null
+        outCallback: null,
+        dependScroll: false
       };
       this.config = _objectSpread2({}, defaults, {}, config, {
         magnet: _objectSpread2({}, magnet, {}, config.magnet),
@@ -282,7 +283,11 @@
 
             if (_this.elementFollow.length > 0) {
               for (var i = 0; i < _this.elementFollow.length; i++) {
-                _this.elementFollow[i].style.transform = 'translate3d(' + (posMouse.x - window.pageXOffset) + 'px,' + (posMouse.y - window.pageYOffset) + 'px, 0)';
+                if (_this.config.dependScroll) {
+                  _this.elementFollow[i].style.transform = 'translate3d(' + posMouse.x + 'px,' + posMouse.y + 'px, 0)';
+                } else {
+                  _this.elementFollow[i].style.transform = 'translate3d(' + (posMouse.x - window.pageXOffset) + 'px,' + (posMouse.y - window.pageYOffset) + 'px, 0)';
+                }
               }
             }
           }, this.config.throttle);
