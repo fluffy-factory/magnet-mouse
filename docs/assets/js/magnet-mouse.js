@@ -85,7 +85,8 @@
         class: 'magnet-mouse-active',
         enabled: true,
         distance: 30,
-        position: 'center'
+        position: 'center',
+        root: document
       };
       var follow = {
         element: '.follow-mouse',
@@ -102,8 +103,8 @@
         magnet: _objectSpread2({}, magnet, {}, config.magnet),
         follow: _objectSpread2({}, follow, {}, config.follow)
       });
-      this.elementMagnet = document.querySelectorAll(this.config.magnet.element);
-      this.elementFollow = document.querySelectorAll(this.config.follow.element);
+      this.elementMagnet = this.config.magnet.root.querySelectorAll(this.config.magnet.element);
+      this.elementFollow = this.config.magnet.root.querySelectorAll(this.config.follow.element);
     } // Avoid consecutive calls by introducing a delay.
 
 

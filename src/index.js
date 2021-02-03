@@ -7,7 +7,8 @@ export default class MagnetMouse {
       class: 'magnet-mouse-active',
       enabled: true,
       distance: 30,
-      position: 'center'
+      position: 'center',
+      root: document
     };
 
     const follow = {
@@ -34,8 +35,8 @@ export default class MagnetMouse {
       }
     };
 
-    this.elementMagnet = document.querySelectorAll(this.config.magnet.element);
-    this.elementFollow = document.querySelectorAll(this.config.follow.element);
+    this.elementMagnet = this.config.magnet.root.querySelectorAll(this.config.magnet.element);
+    this.elementFollow = this.config.magnet.root.querySelectorAll(this.config.follow.element);
   }
 
   // Avoid consecutive calls by introducing a delay.
