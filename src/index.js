@@ -35,8 +35,8 @@ export default class MagnetMouse {
       }
     };
 
-    this.elementMagnet = this.config.magnet.root.querySelectorAll(this.config.magnet.element);
-    this.elementFollow = this.config.magnet.root.querySelectorAll(this.config.follow.element);
+    this.elementMagnet = this.config.root.querySelectorAll(this.config.magnet.element);
+    this.elementFollow = this.config.root.querySelectorAll(this.config.follow.element);
   }
 
   // Avoid consecutive calls by introducing a delay.
